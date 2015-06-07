@@ -12,6 +12,7 @@ public class HelloWorldController {
 
         ModelAndView mv = new ModelAndView();
         mv.addObject("message", "Hello World!");
+        mv.addObject("blabla", "blabla");
         mv.setViewName("hello");
         return mv;
     }
