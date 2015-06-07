@@ -2,7 +2,10 @@ package com.softwareengineering.accountmanager.model;
 
 import com.ibatis.sqlmap.client.SqlMapClient;
 import com.ibatis.sqlmap.client.SqlMapClientBuilder;
+import com.softwareengineering.accountmanager.model.data.Balance;
 import com.softwareengineering.accountmanager.model.data.SecurityInformation;
+import com.softwareengineering.accountmanager.model.tablemanager.BalanceManager;
+import com.softwareengineering.accountmanager.model.tablemanager.SecurityInformationManager;
 import org.apache.ibatis.io.Resources;
 
 import java.io.IOException;
@@ -15,124 +18,73 @@ import java.util.List;
  */
 public class DatabaseManager {
 
-    private static DatabaseManager databaseManager = null;
+    private SqlMapClient sqlMapClient;
 
-    private Connection connection;
+    private SecurityInformationManager securityInformationManager;
 
-    // 单例模式
-    public static DatabaseManager getDatabaseManager() {
-        if (databaseManager == null) {
-            databaseManager = new DatabaseManager();
-        }
-        return databaseManager;
-    }
+    private BalanceManager balanceManager;
 
-    private DatabaseManager() {
+    public DatabaseManager() {
         super();
         try {
-            Class.forName("com.mysql.jdbc.Driver");
-            connection = DriverManager.getConnection("jdbc:mysql://localhost/account_development", "development", "123");
-        } catch (ClassNotFoundException e) {
-            e.printStackTrace();
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-    }
-
-    public void release() {
-        try {
-            connection.close();
-        } catch (SQLException e) {
+            Reader reader = Resources.getResourceAsReader("mybatis/config.xml");
+            sqlMapClient = SqlMapClientBuilder.buildSqlMapClient(reader);
+            reader.close();
+            securityInformationManager = new SecurityInformationManager(sqlMapClient);
+            balanceManager = new BalanceManager(sqlMapClient);
+        } catch (IOException e) {
             e.printStackTrace();
         }
-        databaseManager = null;
-    }
-
-    public static void main(String[] args) {
-        System.out.println(DatabaseManager.getDatabaseManager().existUser("root"));
     }
 
     public boolean existUser(String accountName) {
-
-        try {
-            Reader reader = Resources.getResourceAsReader("mybatis/config.xml");
-            SqlMapClient sqlMapClient = SqlMapClientBuilder.buildSqlMapClient(reader);
-            reader.close();
-            List<SecurityInformation> securityInformationList = sqlMapClient.queryForList("getSecurityInformation", new SecurityInformation(accountName, "", ""));
-            if (securityInformationList.size() > 0) {
-                return true;
-            }
-            else {
-                return false;
-            }
-        } catch (IOException e) {
-            e.printStackTrace();
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-        return false;
-
+        return securityInformationManager.existUser(accountName);
     }
 
-    public boolean checkPassword(String accountName, String passwordCipher) {
-        try {
-            PreparedStatement preparedStatement = connection.prepareStatement("SELECT * FROM security_information WHERE account_name = ? AND password = ?");
-            preparedStatement.setString(1, accountName);
-            preparedStatement.setString(2, passwordCipher);
-            ResultSet resultSet = preparedStatement.executeQuery();
-            if (resultSet.next()) {
-                return true;
-            }
-            else {
-                return false;
-            }
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-        return false;
+    public boolean checkPassword(String accountName, String password) {
+        return securityInformationManager.checkPassword(accountName, password);
     }
 
-    public boolean checkPayPassword(String accountName, String payPasswordCipher) {
-        try {
-            PreparedStatement preparedStatement = connection.prepareStatement("SELECT * FROM security_information WHERE account_name = ? AND pay_password = ?");
-            preparedStatement.setString(1, accountName);
-            preparedStatement.setString(2, payPasswordCipher);
-            ResultSet resultSet = preparedStatement.executeQuery();
-            if (resultSet.next()) {
-                return true;
-            }
-            else {
-                return false;
-            }
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-        return false;
+    public boolean checkPayPassword(String accountName, String payPassword) {
+        return securityInformationManager.checkPayPassword(accountName, payPassword);
     }
 
-    public boolean addUser(String accountName, String passwordCipher, String payPasswordCipher) {
-        try {
-            PreparedStatement preparedStatement = connection.prepareStatement("INSERT INTO security_information(account_name, password, pay_password) VALUES (?, ?, ?)");
-            preparedStatement.setString(1, accountName);
-            preparedStatement.setString(2, passwordCipher);
-            preparedStatement.setString(3, payPasswordCipher);
-            preparedStatement.executeUpdate();
-            return true;
-        } catch (SQLException e) {
-            e.printStackTrace();
-            return false;
-        }
+    public boolean addUser(String accountName, String password, String payPassword) {
+        boolean result = true;
+        result = result && securityInformationManager.addSecurityInformation(accountName, password, payPassword);
+        result = result && balanceManager.addBalance(accountName);
+        return result;
+    }
+
+    public boolean changePassword(String accountName, String password) {
+        return securityInformationManager.changePassword(accountName, password);
+    }
+
+    public boolean changePayPassword(String accountName, String payPassword) {
+        return securityInformationManager.changePayPassword(accountName, payPassword);
     }
 
     public boolean deleteUser(String accountName) {
-        try {
-            PreparedStatement preparedStatement = connection.prepareStatement("DELETE FROM security_information WHERE account_name = ?");
-            preparedStatement.setString(1, accountName);
-            preparedStatement.executeUpdate();
-            return true;
-        } catch (SQLException e) {
-            e.printStackTrace();
-            return false;
-        }
+        boolean result = true;
+        result = result && securityInformationManager.deleteSecurityInformation(accountName);
+        result = result && balanceManager.deleteBalance(accountName);
+        return result;
+    }
+
+    public double queryBalance(String accountName) {
+        return balanceManager.queryBalance(accountName);
+    }
+
+    public boolean updateBalance(String accountName, double balance) {
+        return this.updateBalance(new Balance(accountName, balance));
+    }
+
+    public boolean updateBalance(Balance balance) {
+        return balanceManager.updateBalance(balance);
+    }
+
+    public static void main(String[] args) {
+        String out = "" + new DatabaseManager().updateBalance("root", 1000);
+        System.out.println(out);
     }
 }

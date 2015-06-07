@@ -11,7 +11,7 @@ public class Account {
 
     private CommonInformation commonInformation = null;
 
-    private double balance;
+    private Balance balance;
 
     private Set<PurchaseRecord> purchaseRecordSet;
 
@@ -22,7 +22,7 @@ public class Account {
         this.accountName = accountName;
     }
 
-    public Account(String accountName, CommonInformation commonInformation, double balance, Set<PurchaseRecord> purchaseRecordSet) {
+    public Account(String accountName, CommonInformation commonInformation, Balance balance, Set<PurchaseRecord> purchaseRecordSet) {
         this.accountName = accountName;
         this.commonInformation = commonInformation;
         this.balance = balance;
@@ -45,11 +45,11 @@ public class Account {
         this.commonInformation = commonInformation;
     }
 
-    public double getBalance() {
+    public Balance getBalance() {
         return balance;
     }
 
-    public void setBalance(double balance) {
+    public void setBalance(Balance balance) {
         this.balance = balance;
     }
 

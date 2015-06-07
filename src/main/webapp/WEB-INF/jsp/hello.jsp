@@ -8,9 +8,7 @@
 <body>
 ${message}
 ${blabla}
-<%
 
-%>
 ${complextype[1].accountName}
 ${url}
 </body>

@@ -5,13 +5,24 @@ package com.softwareengineering.accountmanager.model.data;
  */
 public class CommonInformation {
 
-    private String name = "";
+    private String accountName;
 
-    private String telephone = "";
+    private String name;
 
-    public CommonInformation(String name, String telephone) {
+    private String telephone;
+
+    public CommonInformation(String accountName, String name, String telephone) {
+        this.accountName = accountName;
         this.name = name;
         this.telephone = telephone;
+    }
+
+    public String getAccountName() {
+        return accountName;
+    }
+
+    public void setAccountName(String accountName) {
+        this.accountName = accountName;
     }
 
     public String getName() {

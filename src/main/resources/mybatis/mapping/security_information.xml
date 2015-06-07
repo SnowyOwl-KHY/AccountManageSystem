@@ -10,8 +10,33 @@
         <result column="pay_password" property="payPassword"/>
     </resultMap>
 
-    <select id="getSecurityInformation" parameterClass="SecurityInformation" resultMap="securityInformation.rm">
-        SELECT * FROM security_information WHERE account_name = #accountName#
+    <select id="selectSecurityInformation" parameterClass="SecurityInformation" resultMap="securityInformation.rm">
+        SELECT * FROM security_information
+        WHERE account_name LIKE #accountName#
+        AND password LIKE '$password$'
+        AND pay_password LIKE '$payPassword$'
     </select>
+
+    <insert id="insertSecurityInformation" parameterClass="SecurityInformation">
+        INSERT INTO security_information
+        VALUES (#accountName#, #password#, #payPassword#)
+    </insert>
+
+    <update id="updatePassword" parameterClass="SecurityInformation">
+        UPDATE security_information
+        SET password = #password#
+        WHERE account_name = #accountName#
+    </update>
+
+    <update id="updatePayPassword" parameterClass="SecurityInformation">
+        UPDATE security_information
+        SET pay_password = #payPassword#
+        WHERE account_name = #accountName#
+    </update>
+
+    <delete id="deleteSecurityInformation">
+        DELETE FROM security_information
+        WHERE account_name = #accountName#
+    </delete>
 
 </sqlMap>
