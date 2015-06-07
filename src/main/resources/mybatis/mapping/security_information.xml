@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE sqlMap PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN" "http://ibatis.apache.org/dtd/sql-map-2.dtd" >
+<sqlMap>
+    <typeAlias alias="SecurityInformation"
+               type="com.softwareengineering.accountmanager.model.data.SecurityInformation"/>
+
+    <resultMap id="securityInformation.rm" class="SecurityInformation">
+        <result column="account_name" property="accountName"/>
+        <result column="password" property="password"/>
+        <result column="pay_password" property="payPassword"/>
+    </resultMap>
+
+    <select id="getSecurityInformation" parameterClass="SecurityInformation" resultMap="securityInformation.rm">
+        SELECT * FROM security_information WHERE account_name = #accountName#
+    </select>
+
+</sqlMap>

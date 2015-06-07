@@ -1,4 +1,4 @@
-package model.data;
+package com.softwareengineering.accountmanager.model.data;
 
 import java.util.Date;
 
@@ -14,6 +14,9 @@ public class PurchaseRecord implements Comparable {
     private String merchandise = "";
 
     private double money;
+
+    public PurchaseRecord() {
+    }
 
     public PurchaseRecord(int id, Date date, String merchandise, double money) {
         this.id = id;

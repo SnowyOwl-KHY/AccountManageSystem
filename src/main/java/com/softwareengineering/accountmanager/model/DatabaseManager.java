@@ -1,6 +1,14 @@
-package model;
+package com.softwareengineering.accountmanager.model;
 
+import com.ibatis.sqlmap.client.SqlMapClient;
+import com.ibatis.sqlmap.client.SqlMapClientBuilder;
+import com.softwareengineering.accountmanager.model.data.SecurityInformation;
+import org.apache.ibatis.io.Resources;
+
+import java.io.IOException;
+import java.io.Reader;
 import java.sql.*;
+import java.util.List;
 
 /**
  * Created by kehanyang on 15/5/31.
@@ -40,21 +48,30 @@ public class DatabaseManager {
         databaseManager = null;
     }
 
+    public static void main(String[] args) {
+        System.out.println(DatabaseManager.getDatabaseManager().existUser("root"));
+    }
+
     public boolean existUser(String accountName) {
+
         try {
-            PreparedStatement preparedStatement = connection.prepareStatement("SELECT * FROM security_information WHERE account_name = ?");
-            preparedStatement.setString(1, accountName);
-            ResultSet resultSet = preparedStatement.executeQuery();
-            if (resultSet.next()) {
+            Reader reader = Resources.getResourceAsReader("mybatis/config.xml");
+            SqlMapClient sqlMapClient = SqlMapClientBuilder.buildSqlMapClient(reader);
+            reader.close();
+            List<SecurityInformation> securityInformationList = sqlMapClient.queryForList("getSecurityInformation", new SecurityInformation(accountName, "", ""));
+            if (securityInformationList.size() > 0) {
                 return true;
             }
             else {
                 return false;
             }
+        } catch (IOException e) {
+            e.printStackTrace();
         } catch (SQLException e) {
             e.printStackTrace();
         }
         return false;
+
     }
 
     public boolean checkPassword(String accountName, String passwordCipher) {

@@ -1,4 +1,4 @@
-package model.data;
+package com.softwareengineering.accountmanager.model.data;
 
 import java.util.Set;
 

@@ -1,4 +1,4 @@
-package model.data;
+package com.softwareengineering.accountmanager.model.data;
 
 /**
  * Created by kehanyang on 15/5/31.
