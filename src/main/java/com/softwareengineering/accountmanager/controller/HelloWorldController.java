@@ -12,7 +12,7 @@ public class HelloWorldController {
     public ModelAndView handleRequest(HttpServletRequest req, HttpServletResponse resp) throws Exception {
 
         ModelAndView mv = new ModelAndView();
-        mv.addObject("message", "Hello World!");
+        mv.addObject("message", "Hello World");
         mv.addObject("blabla", "blabla");
         SecurityInformation[] s = new SecurityInformation[2];
         s[0] = new SecurityInformation("a", "b", "c");
