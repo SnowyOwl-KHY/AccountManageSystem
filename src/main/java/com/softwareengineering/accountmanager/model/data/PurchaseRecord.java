@@ -7,46 +7,64 @@ import java.util.Date;
  */
 public class PurchaseRecord implements Comparable {
 
-    private int id;
+    private long id;
 
-    private Date date;
+    private String accountName;
 
-    private String merchandise = "";
+    private Date purchaseDate;
+
+    private long merchandiseId;
 
     private double money;
 
     public PurchaseRecord() {
     }
 
-    public PurchaseRecord(int id, Date date, String merchandise, double money) {
-        this.id = id;
-        this.date = date;
-        this.merchandise = merchandise;
+    public PurchaseRecord(String accountName, Date purchaseDate, long merchandiseId, double money) {
+        this.accountName = accountName;
+        this.purchaseDate = purchaseDate;
+        this.merchandiseId = merchandiseId;
         this.money = money;
     }
 
-    public int getId() {
+    public PurchaseRecord(long id, String accountName, Date purchaseDate, long merchandiseId, double money) {
+        this.id = id;
+        this.accountName = accountName;
+        this.purchaseDate = purchaseDate;
+        this.merchandiseId = merchandiseId;
+        this.money = money;
+    }
+
+    public long getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(long id) {
         this.id = id;
     }
 
-    public Date getDate() {
-        return date;
+    public String getAccountName() {
+        return accountName;
     }
 
-    public void setDate(Date date) {
-        this.date = date;
+    public void setAccountName(String accountName) {
+        this.accountName = accountName;
     }
 
-    public String getMerchandise() {
-        return merchandise;
+    public Date getPurchaseDate() {
+        return purchaseDate;
     }
 
-    public void setMerchandise(String merchandise) {
-        this.merchandise = merchandise;
+    public void setPurchaseDate(Date purchaseDate) {
+        this.purchaseDate = purchaseDate;
+    }
+
+    public long getMerchandiseId() {
+        return merchandiseId;
+    }
+
+    public void setMerchandiseId(long merchandiseId) {
+        this.merchandiseId = merchandiseId;
     }
 
     public double getMoney() {
@@ -59,11 +77,20 @@ public class PurchaseRecord implements Comparable {
 
     public int compareTo(Object o) {
         PurchaseRecord another = (PurchaseRecord)o;
-        if (another.date.equals(this.date)) {
-            return this.id - another.id;
+        if (another.purchaseDate.equals(this.purchaseDate)) {
+            return (int)(this.id - another.id);
         }
         else {
-            return this.date.compareTo(another.date);
+            return this.purchaseDate.compareTo(another.purchaseDate);
         }
+    }
+
+    @Override
+    public String toString() {
+        return "[id: " + id
+                + ", accountName: " + accountName
+                + ", purchaseDate: " + purchaseDate
+                + ", merchandiseId: " + merchandiseId
+                + ", money:" + money + "]";
     }
 }

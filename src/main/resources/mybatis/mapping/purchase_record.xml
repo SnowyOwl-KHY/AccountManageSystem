@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE sqlMap PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN" "http://ibatis.apache.org/dtd/sql-map-2.dtd" >
+<sqlMap>
+    <typeAlias alias="PurchaseRecord"
+               type="com.softwareengineering.accountmanager.model.data.PurchaseRecord"/>
+
+    <resultMap id="purchaseRecord.rm" class="PurchaseRecord">
+        <result column="id" property="id"/>
+        <result column="account_name" property="accountName"/>
+        <result column="purchase_date" property="purchaseDate"/>
+        <result column="merchandise_id" property="merchandiseId"/>
+        <result column="money" property="money"/>
+    </resultMap>
+
+    <select id="selectPurchaseRecordById" resultMap="purchaseRecord.rm">
+        SELECT * FROM purchase_record
+        where id = #id#
+    </select>
+
+    <select id="selectPurchaseRecordByAccountName" resultMap="purchaseRecord.rm">
+        SELECT * FROM purchase_record
+        WHERE account_name = #accountName#
+    </select>
+
+    <insert id="insertPurchaseRecord" parameterClass="PurchaseRecord">
+        INSERT INTO purchase_record(account_name, purchase_date, merchandise_id, money)
+        VALUES (#accountName#, #purchaseDate#, #merchandiseId#, #money#)
+    </insert>
+
+    <update id="updatePurchaseRecord" parameterClass="PurchaseRecord">
+        UPDATE purchase_record
+        SET account_name = #accountName#,
+        purchase_date = #purchaseDate#,
+        merchandise_id = #merchandiseId#,
+        money = #money#
+        WHERE id = #id#
+    </update>
+
+    <delete id="deletePurchaseRecordById">
+        DELETE FROM purchase_record
+        WHERE id = #id#
+    </delete>
+
+    <delete id="deletePurchaseRecordByAccountName">
+        DELETE FROM purchase_record
+        WHERE account_name = #accountName#
+    </delete>
+
+</sqlMap>

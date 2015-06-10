@@ -5,15 +5,22 @@ package com.softwareengineering.accountmanager.model.data;
  */
 public class CommonInformation {
 
-    private String accountName;
+    private String accountName = "";
 
-    private String name;
+    private String realName = "";
 
-    private String telephone;
+    private String telephone = "";
 
-    public CommonInformation(String accountName, String name, String telephone) {
+    public CommonInformation() {
+    }
+
+    public CommonInformation(String accountName) {
         this.accountName = accountName;
-        this.name = name;
+    }
+
+    public CommonInformation(String accountName, String realName, String telephone) {
+        this.accountName = accountName;
+        this.realName = realName;
         this.telephone = telephone;
     }
 
@@ -25,12 +32,12 @@ public class CommonInformation {
         this.accountName = accountName;
     }
 
-    public String getName() {
-        return name;
+    public String getRealName() {
+        return realName;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setRealName(String realName) {
+        this.realName = realName;
     }
 
     public String getTelephone() {

@@ -3,8 +3,12 @@ package com.softwareengineering.accountmanager.model;
 import com.ibatis.sqlmap.client.SqlMapClient;
 import com.ibatis.sqlmap.client.SqlMapClientBuilder;
 import com.softwareengineering.accountmanager.model.data.Balance;
+import com.softwareengineering.accountmanager.model.data.CommonInformation;
+import com.softwareengineering.accountmanager.model.data.PurchaseRecord;
 import com.softwareengineering.accountmanager.model.data.SecurityInformation;
 import com.softwareengineering.accountmanager.model.tablemanager.BalanceManager;
+import com.softwareengineering.accountmanager.model.tablemanager.CommonInformationManager;
+import com.softwareengineering.accountmanager.model.tablemanager.PurchaseRecordManager;
 import com.softwareengineering.accountmanager.model.tablemanager.SecurityInformationManager;
 import org.apache.ibatis.io.Resources;
 
@@ -24,6 +28,10 @@ public class DatabaseManager {
 
     private BalanceManager balanceManager;
 
+    private CommonInformationManager commonInformationManager;
+
+    private PurchaseRecordManager purchaseRecordManager;
+
     public DatabaseManager() {
         super();
         try {
@@ -32,6 +40,8 @@ public class DatabaseManager {
             reader.close();
             securityInformationManager = new SecurityInformationManager(sqlMapClient);
             balanceManager = new BalanceManager(sqlMapClient);
+            commonInformationManager = new CommonInformationManager(sqlMapClient);
+            purchaseRecordManager = new PurchaseRecordManager(sqlMapClient);
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -53,6 +63,7 @@ public class DatabaseManager {
         boolean result = true;
         result = result && securityInformationManager.addSecurityInformation(accountName, password, payPassword);
         result = result && balanceManager.addBalance(accountName);
+        result = result && commonInformationManager.add(accountName);
         return result;
     }
 
@@ -68,6 +79,8 @@ public class DatabaseManager {
         boolean result = true;
         result = result && securityInformationManager.deleteSecurityInformation(accountName);
         result = result && balanceManager.deleteBalance(accountName);
+        result = result && commonInformationManager.delete(accountName);
+        result = result && purchaseRecordManager.deleteByAccountName(accountName);
         return result;
     }
 
@@ -83,8 +96,42 @@ public class DatabaseManager {
         return balanceManager.updateBalance(balance);
     }
 
+    public CommonInformation queryCommonInformation(String accountName) {
+        return commonInformationManager.query(accountName);
+    }
+
+    public boolean updateCommonInformation(CommonInformation commonInformation) {
+        return commonInformationManager.update(commonInformation);
+    }
+
+    public boolean addPurchaseRecord(PurchaseRecord purchaseRecord) {
+        return purchaseRecordManager.add(purchaseRecord);
+    }
+
+    public boolean updatePurchaseRecord(PurchaseRecord purchaseRecord) {
+        return purchaseRecordManager.update(purchaseRecord);
+    }
+
+    public PurchaseRecord queryPurchaseRecordById(long id) {
+        return purchaseRecordManager.queryById(id);
+    }
+
+    public List<PurchaseRecord> queryPurchaseRecordByAccountName(String accountName) {
+        return purchaseRecordManager.queryByAccountName(accountName);
+    }
+
+    public boolean deletePurchaseRecordById(long id) {
+        return purchaseRecordManager.deleteById(id);
+    }
+
     public static void main(String[] args) {
-        String out = "" + new DatabaseManager().updateBalance("root", 1000);
-        System.out.println(out);
+        String out = "";
+        out += " " + new DatabaseManager().purchaseRecordManager.add(new PurchaseRecord("root", new java.util.Date(), 001, 10000));
+        out += " " + new DatabaseManager().purchaseRecordManager.add(new PurchaseRecord("root", new java.util.Date(), 002, 20000));
+        out += " " + new DatabaseManager().purchaseRecordManager.add(new PurchaseRecord("root", new java.util.Date(), 003, 30000));
+//        out += " " + new DatabaseManager().purchaseRecordManager.deleteByAccountName("root");
+//        System.out.println(out);
+//        List<PurchaseRecord> purchaseRecords = new DatabaseManager().purchaseRecordManager.queryByAccountName("root");
+//        System.out.println(purchaseRecords);
     }
 }

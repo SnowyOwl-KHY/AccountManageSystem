@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE sqlMap PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN" "http://ibatis.apache.org/dtd/sql-map-2.dtd" >
+<sqlMap>
+    <typeAlias alias="CommonInformation"
+               type="com.softwareengineering.accountmanager.model.data.CommonInformation"/>
+
+    <resultMap id="commonInformation.rm" class="CommonInformation">
+        <result column="account_name" property="accountName"/>
+        <result column="real_name" property="realName"/>
+        <result column="telephone" property="telephone"/>
+    </resultMap>
+
+    <select id="selectCommonInformation" resultMap="commonInformation.rm">
+        SELECT * FROM common_information WHERE account_name = #accountName#
+    </select>
+
+    <update id="updateCommonInformation" parameterClass="CommonInformation">
+        UPDATE common_information
+        SET real_name = #realName#, telephone = #telephone#
+        WHERE account_name = #accountName#
+    </update>
+
+    <insert id="insertCommonInformation" parameterClass="CommonInformation">
+        INSERT INTO common_information
+        VALUES (#accountName#, #realName#, #telephone#)
+    </insert>
+
+    <delete id="deleteCommonInformation">
+        DELETE FROM common_information WHERE account_name = #accountName#
+    </delete>
+
+</sqlMap>
