@@ -8,7 +8,7 @@ import org.springframework.web.servlet.ModelAndView;
 import org.springframework.stereotype.*;
 @Controller
 public class HelloWorldController {
-    @RequestMapping("/hello")
+    @RequestMapping("/")
     public ModelAndView handleRequest(HttpServletRequest req, HttpServletResponse resp) throws Exception {
 
         ModelAndView mv = new ModelAndView();
@@ -19,7 +19,7 @@ public class HelloWorldController {
         s[1] = new SecurityInformation("e", "f", "g");
         mv.addObject("complextype", s);
         mv.addObject("url", req.getRequestURL());
-        mv.setViewName("hello");
+        mv.setViewName("signin");
         return mv;
     }
 }
