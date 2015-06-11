@@ -40,7 +40,27 @@
       alert("Please enter password!");
       return false;
     }
-    window.location.href="main.html";
+    submit(un, pw);
+  }
+  function submit(un, pw){
+    var posturl = "";
+    var un = un;
+    var pw = pw;
+    var form = document.createElement("FORM");
+    document.body.appendChild(form);
+    form.method = "POST";
+    var newElement = document.createElement("input");
+    newElement.setAttribute("name", "un");
+    newElement.setAttribute("type", "hidden");
+    var newElement2 = document.createElement("input");
+    newElement2.setAttribute("name", "pw");
+    newElement2.setAttribute("type", "hidden");
+    form.appendChild(newElement);
+    form.appendChild(newElement2);
+    newElement.value = un;
+    newElement2.value = pw;
+    form.action = posturl;
+    form.submit();
   }
 </script>
 </body>
