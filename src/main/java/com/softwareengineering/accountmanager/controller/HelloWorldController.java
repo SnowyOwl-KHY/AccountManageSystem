@@ -22,4 +22,18 @@ public class HelloWorldController {
         mv.setViewName("hello");
         return mv;
     }
+    @RequestMapping("/hello1")
+    public ModelAndView handleRequest1(HttpServletRequest req, HttpServletResponse resp) throws Exception {
+
+        ModelAndView mv = new ModelAndView();
+        mv.addObject("message", "Hello World!");
+        mv.addObject("blabla", "blabla－hello1");
+        SecurityInformation[] s = new SecurityInformation[2];
+        s[0] = new SecurityInformation("a", "b", "c");
+        s[1] = new SecurityInformation("e", "f", "g");
+        mv.addObject("complextype", s);
+        mv.addObject("url", req.getRequestURL());
+        mv.setViewName("hello");
+        return mv;
+    }
 }
