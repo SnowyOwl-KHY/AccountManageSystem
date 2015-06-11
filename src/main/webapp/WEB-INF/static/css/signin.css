@@ -1,10 +1,9 @@
-.login-bg { background: url("/static/pic/background.jpg") repeat center center fixed; background-size: cover; }
-
-.login-wrapper { width: 99%; position: absolute; top: 190px; text-align: center; }
-.login-wrapper .box { margin: 0 auto; padding: 35px 0 30px; width: 400px; box-shadow: 0 0 6px 2px rgba(0, 0, 0, 0.1); border-radius: 5px; background: rgba(255, 255, 255, 0.65); }
-.login-wrapper .box h6 { margin: 0 0 30px 0; font-size: 18px; font-weight: 600; }
-.login-wrapper .box input[type="text"],
-.login-wrapper .box input[type="password"] {
+.bg { background: url("/static/pic/background.jpg") repeat center center fixed; background-size: cover; }
+.signin-wrapper {width: 99%; position: absolute; top: 190px; text-align: center; }
+.signin-wrapper .box { margin: 0 auto; padding: 35px 0 30px; width: 400px; box-shadow: 0 0 6px 2px rgba(0, 0, 0, 0.1); border-radius: 5px; background: rgba(255, 255, 255, 0.65); }
+.signin-wrapper .box h6 { margin: 0 0 30px 0; font-size: 18px; font-weight: 600; }
+.signin-wrapper .box input[type="text"],
+.signin-wrapper .box input[type="password"] {
     border-radius: 8px;
     color: #555555;
     background-color: #ffffff;
@@ -16,26 +15,20 @@
     margin-bottom: 18px;
     border-color: #b2bfc7;
     padding-left: 12px; }
-.login-wrapper .box input[type="text"]:focus,
-.login-wrapper .box input[type="password"]:focus {
+.signin-wrapper .box input[type="text"]:focus,
+.signin-wrapper .box input[type="password"]:focus {
     border: 1px solid #28a0e5;
     outline: none;
     box-shadow: inset 0 1px 2px #dddddd, 0px 0 5px #28a0e5; }
-.login-wrapper .box input[type="password"] {
-    margin-bottom: 10px; }
-.login-wrapper .box a.forgot { display: block; text-align: right; font-style: italic; text-decoration: underline; color: #3d88ba; font-size: 13px; margin-bottom: 6px; }
-.login-wrapper .box .remember { display: block; overflow: hidden; margin-bottom: 20px; }
-.login-wrapper .box .remember input[type="checkbox"] { float: left; margin-right: 8px; }
-.login-wrapper .box .remember label { float: left; color: #4a576a; font-size: 13px; }
-.login-wrapper .box .signin {
-    text-transform: uppercase;
-    font-size: 13px;
-    padding: 8px 30px; }
-.login-wrapper .no-account { margin: 0 auto; float: none; text-align: center; font-size: 14px; margin-top: 25px; }
-.login-wrapper .no-account p { display: inline-block; color: #aaaaaa; }
-.login-wrapper .no-account a { color: #aaaaaa; margin-left: 7px; transition: all .1s linear; }
-.login-wrapper .no-account a:hover { text-decoration: none; color: #fff; }
-
+.signin-wrapper .box input[type="password"] { margin-bottom: 10px; }
+.signin-wrapper .box a.forgot { display: block; text-align: right; font-style: italic; text-decoration: underline; color: #3d88ba; font-size: 13px; margin-bottom: 6px; }
+.signin-wrapper .box .remember { display: block; overflow: hidden; margin-bottom: 20px; }
+.signin-wrapper .box .remember input[type="checkbox"] { float: left; margin-right: 8px; }
+.signin-wrapper .box .remember label { float: left; color: #4a576a; font-size: 13px; }
+.signin-wrapper .no-account { margin: 0 auto; float: none; text-align: center; font-size: 14px; margin-top: 25px; }
+.signin-wrapper .no-account p { display: inline-block; color: #aaaaaa; }
+.signin-wrapper .no-account a { color: #aaaaaa; margin-left: 7px; transition: all .1s linear; }
+.signin-wrapper .no-account a:hover { text-decoration: none; color: #fff; }
 .btn{
     font-size: 20px;
     border-radius: 4px;

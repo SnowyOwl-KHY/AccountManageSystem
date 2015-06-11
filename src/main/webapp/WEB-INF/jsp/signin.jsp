@@ -8,13 +8,13 @@
 </head>
 
 <body>
-<div class="login-wrapper">
+<div class="signin-wrapper">
   <div class="box">
-    <div style="width:82%;margin:auto;">
+    <div style="width:82%;margin:0 auto;">
       <h6 align="center">SIGN IN</h6>
       <input type="text" id="un" placeholder="Username" />
       <input type="password" id="pw" placeholder="Password" />
-      <a class="forgot" href="forget_password.html">forget password?</a>
+      <a class="forgot" href="forget_password.jsp">forget password?</a>
       <div class="remember">
         <input id="remember-me" type="checkbox" />
         <label for="remember-me">Remember me</label>
@@ -24,7 +24,7 @@
   </div>
   <div class="no-account">
     <p>No account?</p>
-    <a href="signup.html">sign up</a>
+    <a href="signup.jsp">sign up</a>
   </div>
 </div>
 <!-- scripts -->
