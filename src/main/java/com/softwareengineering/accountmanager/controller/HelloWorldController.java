@@ -18,7 +18,8 @@ public class HelloWorldController {
         s[1] = new SecurityInformation("e", "f", "g");
         mv.addObject("complextype", s);
         mv.addObject("url", req.getRequestURL());
-        mv.setViewName("signup");
+        mv.addObject("ACCOUNT","ACCOUNT10001");
+        mv.setViewName("main");
         return mv;
     }
     @RequestMapping("/hello1")
