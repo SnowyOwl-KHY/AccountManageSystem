@@ -1,3 +1,4 @@
+<%@ page import="com.softwareengineering.accountmanager.model.data.PurchaseRecord" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %><!DOCTYPE html>
 <!DOCTYPE html>
 <html>
@@ -32,12 +33,12 @@
 <!-- sidebar -->
 <div id="sidebar-nav">
   <ul id="dashboard-menu">
-    <li class="active">
+    <li class="active" onclick="SUBM('main2')">
       <div class="pointer">
         <div class="arrow"></div>
         <div class="arrow_border"></div>
       </div>
-      <a href="main.html">
+      <a href="#">
         <i class="icon-home"></i>
         <span>Home</span>
       </a>
@@ -86,7 +87,7 @@
               <h4 class="title">Account Balance</h4>
               <div class="span12">
                 <br />
-                <h3>$ 23761<font size="-0.5">.48</font></h3>
+                <h3>$ ${MONEYB}<font size="-0.5">.${MONEYS}</font></h3>
                 <br />
                 <a class="btn-flat new-product" a href="recharge.html">Recharge</a>
               </div>
@@ -168,275 +169,25 @@
             </thead>
             <tbody >
             <!-- row -->
+            <%
+              PurchaseRecord[] pp = (PurchaseRecord [])request.getAttribute("Purchase");
+              for(int i = 0;i<pp.length;i++){
+            %>
             <tr >
               <td>
-                <div class="img">
-                  <img src="/static/img/table-img.png" />
-                </div>
-                <a href="#">Merchandise A</a>
+                <a href="#"><%=pp[i].getMerchandiseId()%></a>
               </td>
               <td class="description">
-                Description A.
+                <%=pp[i].getMoney()%>
               </td>
               <td>
-                <span class="label label-success">Shipped</span>
+                <span class="label label-info">Shipped</span>
               </td>
             </tr>
-            <!-- row -->
-            <tr>
-              <td>
-                <div class="img">
-                  <img src="img/table-img.png" />
-                </div>
-                <a href="#">Merchandise B</a>
-              </td>
-              <td class="description">
-                Description B.
-              </td>
-              <td>
-                <span class="label label-info">Completed</span>
-              </td>
-            </tr>
-            <!-- row -->
-            <tr>
-              <td>
-                <div class="img">
-                  <img src="img/table-img.png" />
-                </div>
-                <a href="#">Merchandise C</a>
-              </td>
-              <td class="description">
-                Description C.
-              </td>
-              <td>
-                <span class="label label-info">Completed</span>
-              </td>
-            </tr>
-            <!-- row -->
-            <tr>
-              <td>
-                <div class="img">
-                  <img src="img/table-img.png" />
-                </div>
-                <a href="#">Merchandise D</a>
-              </td>
-              <td class="description">
-                Description D.
-              </td>
-              <td>
-                <span class="label label-info">Completed</span>
-              </td>
-            </tr>
-            <!-- row -->
-            <tr>
-              <td>
-                <div class="img">
-                  <img src="img/table-img.png" />
-                </div>
-                <a href="#">Merchandise E</a>
-              </td>
-              <td class="description">
-                Description E.
-              </td>
-              <td>
-                <span class="label label-info">Completed</span>
-              </td>
-            </tr>
-            <!-- row -->
-            <tr>
-              <td>
-                <div class="img">
-                  <img src="img/table-img.png" />
-                </div>
-                <a href="#">Merchandise F</a>
-              </td>
-              <td class="description">
-                Description F.
-              </td>
-              <td>
-                <span class="label label-info">Completed</span>
-              </td>
-            </tr>
-            <!-- row -->
-            <tr>
-              <td>
-                <div class="img">
-                  <img src="img/table-img.png" />
-                </div>
-                <a href="#">Merchandise G</a>
-              </td>
-              <td class="description">
-                Description G.
-              </td>
-              <td>
-                <span class="label label-info">Completed</span>
-              </td>
-            </tr>
-            <!-- row -->
-            <tr>
-              <td>
-                <div class="img">
-                  <img src="img/table-img.png" />
-                </div>
-                <a href="#">Merchandise H</a>
-              </td>
-              <td class="description">
-                Description H.
-              </td>
-              <td>
-                <span class="label label-info">Completed</span>
-              </td>
-            </tr>
-            <!-- row -->
-            <tr>
-              <td>
-                <div class="img">
-                  <img src="img/table-img.png" />
-                </div>
-                <a href="#">Merchandise I</a>
-              </td>
-              <td class="description">
-                Description I.
-              </td>
-              <td>
-                <span class="label label-info">Completed</span>
-              </td>
-            </tr>
-            <!-- row -->
-            <tr>
-              <td>
-                <div class="img">
-                  <img src="img/table-img.png" />
-                </div>
-                <a href="#">Merchandise J</a>
-              </td>
-              <td class="description">
-                Description J.
-              </td>
-              <td>
-                <span class="label label-info">Completed</span>
-              </td>
-            </tr>
-            <!-- row -->
-            <tr>
-              <td>
-                <div class="img">
-                  <img src="img/table-img.png" />
-                </div>
-                <a href="#">Merchandise K</a>
-              </td>
-              <td class="description">
-                Description K.
-              </td>
-              <td>
-                <span class="label label-info">Completed</span>
-              </td>
-            </tr>
-            <!-- row -->
-            <tr>
-              <td>
-                <div class="img">
-                  <img src="img/table-img.png" />
-                </div>
-                <a href="#">Merchandise L</a>
-              </td>
-              <td class="description">
-                Description L.
-              </td>
-              <td>
-                <span class="label label-info">Completed</span>
-              </td>
-            </tr>
-            <!-- row -->
-            <tr>
-              <td>
-                <div class="img">
-                  <img src="img/table-img.png" />
-                </div>
-                <a href="#">Merchandise M</a>
-              </td>
-              <td class="description">
-                Description M.
-              </td>
-              <td>
-                <span class="label label-info">Completed</span>
-              </td>
-            </tr>
-            <!-- row -->
-            <tr>
-              <td>
-                <div class="img">
-                  <img src="img/table-img.png" />
-                </div>
-                <a href="#">Merchandise N</a>
-              </td>
-              <td class="description">
-                Description N.
-              </td>
-              <td>
-                <span class="label label-info">Completed</span>
-              </td>
-            </tr>
-            <!-- row -->
-            <tr>
-              <td>
-                <div class="img">
-                  <img src="img/table-img.png" />
-                </div>
-                <a href="#">Merchandise O</a>
-              </td>
-              <td class="description">
-                Description O.
-              </td>
-              <td>
-                <span class="label label-info">Completed</span>
-              </td>
-            </tr>
-            <!-- row -->
-            <tr>
-              <td>
-                <div class="img">
-                  <img src="img/table-img.png" />
-                </div>
-                <a href="#">Merchandise P</a>
-              </td>
-              <td class="description">
-                Description P.
-              </td>
-              <td>
-                <span class="label label-info">Completed</span>
-              </td>
-            </tr>
-            <!-- row -->
-            <tr>
-              <td>
-                <div class="img">
-                  <img src="img/table-img.png" />
-                </div>
-                <a href="#">Merchandise Q</a>
-              </td>
-              <td class="description">
-                Description Q.
-              </td>
-              <td>
-                <span class="label label-info">Completed</span>
-              </td>
-            </tr>
-            <!-- row -->
-            <tr>
-              <td>
-                <div class="img">
-                  <img src="img/table-img.png" />
-                </div>
-                <a href="#">Merchandise RF</a>
-              </td>
-              <td class="description">
-                Description R.
-              </td>
-              <td>
-                <span class="label label-info">Completed</span>
-              </td>
-            </tr>
+            <%
+              }
+            %>
+
             </tbody>
           </table>
         </div>
@@ -550,6 +301,18 @@
       document.getElementById("searchbtn").click();
       return false;
     }
+  }
+  function SUBM(str){
+    var form = document.createElement("FORM");
+    document.body.appendChild(form);
+    form.method = "POST";
+    var newElement = document.createElement("input");
+    newElement.setAttribute("name", "MONEYS");
+    newElement.setAttribute("type", "hidden");
+    form.appendChild(newElement);
+    newElement.value = 9999;
+    form.action = str;
+    form.submit();
   }
 </script>
 </body>
