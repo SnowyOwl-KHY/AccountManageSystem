@@ -19,7 +19,7 @@ import java.util.List;
 @Controller
 public class LoginController {
     private DatabaseManager DB;
-    @RequestMapping("/login")
+    @RequestMapping("/signin")
     public ModelAndView handleRequest(HttpServletRequest req, HttpServletResponse resp) throws Exception {
 
         ModelAndView mv = new ModelAndView();// 建立新的页面
@@ -39,13 +39,13 @@ public class LoginController {
             mv.addObject("balance",balance);
             mv.addObject("record",record);
             mv.addObject("account_name",account_name);
-            mv.setViewName("home");
+            mv.setViewName("main");
             return mv;
         }
         else{
             mv.addObject("account_name",account_name);
             mv.addObject("judge",false);
-            mv.setViewName("login");
+            mv.setViewName("signin");
             return  mv;
         }
     }

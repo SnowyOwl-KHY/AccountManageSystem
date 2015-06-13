@@ -11,7 +11,7 @@ import org.springframework.stereotype.*;
 @Controller
 public class InfoController {
     private DatabaseManager DB;
-    @RequestMapping("/person_info")
+    @RequestMapping("/info")
     public ModelAndView handleRequest(HttpServletRequest req, HttpServletResponse resp) throws Exception {
 
         ModelAndView mv = new ModelAndView();
@@ -20,7 +20,7 @@ public class InfoController {
         CommonInformation info = DB.queryCommonInformation(account_name);
         mv.addObject("info",info);
         mv.addObject("account_name",account_name);
-        mv.setViewName("person_info");
+        mv.setViewName("information");
         return mv;
     }
 }

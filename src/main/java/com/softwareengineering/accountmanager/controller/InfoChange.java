@@ -21,13 +21,15 @@ public class InfoChange {
         String country = req.getParameter("country");
         String birthyday = req.getParameter("birthday");
         String phone = req.getParameter("phone");
+        String addr1 = req.getParameter("addr1");
         String text = req.getParameter("text");
         String postcode = req.getParameter("postcode");
         String gender = req.getParameter("gender");
-        CommonInformation info = new CommonInformation(account_name,nickname,realname,country,birthyday,phone,text,postcode,gender);
+        CommonInformation info = new CommonInformation(account_name,nickname,realname,country,birthyday,phone,addr1,text,postcode,gender);
         DB.updateCommonInformation(info);
         mv.addObject("account_name",account_name);
-        mv.setViewName("success");
+        mv.addObject("info",info);
+        mv.setViewName("information");
         return mv;
     }
 }

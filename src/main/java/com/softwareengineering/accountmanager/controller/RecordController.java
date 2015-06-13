@@ -15,7 +15,7 @@ import java.util.List;
 @Controller
 public class RecordController {
     private DatabaseManager DB;
-    @RequestMapping("/record")
+    @RequestMapping("/purchase")
     public ModelAndView handleRequest(HttpServletRequest req, HttpServletResponse resp) throws Exception {
         DB =new DatabaseManager();
         ModelAndView mv = new ModelAndView();
@@ -23,7 +23,7 @@ public class RecordController {
         List<PurchaseRecord> record = DB.queryPurchaseRecordByAccountName(account_name);
         mv.addObject("account_name",account_name);
         mv.addObject("record",record);
-        mv.setViewName("purchase_history");
+        mv.setViewName("purchase");
         return mv;
     }
 }

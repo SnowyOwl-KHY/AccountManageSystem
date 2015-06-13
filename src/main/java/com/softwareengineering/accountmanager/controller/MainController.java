@@ -14,7 +14,7 @@ import java.util.List;
  */
 public class MainController {
     private DatabaseManager DB;
-    @RequestMapping("/home")
+    @RequestMapping("/main")
     public ModelAndView handleRequest(HttpServletRequest req, HttpServletResponse resp) throws Exception {
         DB =new DatabaseManager();
         ModelAndView mv = new ModelAndView();
@@ -24,7 +24,7 @@ public class MainController {
         mv.addObject("account_name",account_name);
         mv.addObject("balance",balance);
         mv.addObject("record",record);
-        mv.setViewName("home");
+        mv.setViewName("main");
         return mv;
     }
 }

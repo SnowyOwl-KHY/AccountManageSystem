@@ -17,8 +17,8 @@ public class PayPasswordController {
 
         DB =new DatabaseManager();
         ModelAndView mv = new ModelAndView();
-        String paywordOld = req.getParameter("paywordOld");
-        String paywordNew = req.getParameter("paywordNew");
+        String paywordOld = req.getParameter("old_password");
+        String paywordNew = req.getParameter("new_password");
         String account_name = req.getParameter("account_name");
         boolean judge = DB.checkPayPassword(account_name,paywordOld);
         if(judge){
@@ -37,7 +37,7 @@ public class PayPasswordController {
         String account_name = req.getParameter("account_name");
         ModelAndView mv = new ModelAndView();
         mv.addObject("account_name",account_name);
-        mv.setViewName("pay_password");
+        mv.setViewName("change_password");
         return mv;
     }
 }
