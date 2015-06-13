@@ -6,8 +6,15 @@
 
     <resultMap id="commonInformation.rm" class="CommonInformation">
         <result column="account_name" property="accountName"/>
+        <result column="nickname" property="nickname"/>
         <result column="real_name" property="realName"/>
-        <result column="telephone" property="telephone"/>
+        <result column="country" property="country"/>
+        <result column="birthday" property="birthday"/>
+        <result column="phone" property="phone"/>
+        <result column="address" property="address"/>
+        <result column="text" property="text"/>
+        <result column="postcode" property="postcode"/>
+        <result column="gender" property="gender"/>
     </resultMap>
 
     <select id="selectCommonInformation" resultMap="commonInformation.rm">
@@ -16,13 +23,21 @@
 
     <update id="updateCommonInformation" parameterClass="CommonInformation">
         UPDATE common_information
-        SET real_name = #realName#, telephone = #telephone#
+        SET nickname = #nickname#
+        real_name = #realName#,
+        country = #country#,
+        birthday = #birthday#,
+        phone = #phone#,
+        address = #address#,
+        text = #text#,
+        postcode = #postcode#,
+        gender = #gender#
         WHERE account_name = #accountName#
     </update>
 
     <insert id="insertCommonInformation" parameterClass="CommonInformation">
         INSERT INTO common_information
-        VALUES (#accountName#, #realName#, #telephone#)
+        VALUES (#accountName#, #nickname#, #realName#, #country#, #birthday#, #phone#, #address#, #text#, #postcode#, #gender#)
     </insert>
 
     <delete id="deleteCommonInformation">
