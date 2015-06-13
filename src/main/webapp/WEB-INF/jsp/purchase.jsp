@@ -36,19 +36,19 @@
 <div id="sidebar-nav">
   <ul id="dashboard-menu">
     <li>
-      <a href="main.html">
+      <a href="#" onclick="InterSUB('main')">
         <i class="icon-home"></i>
         <span>Home</span>
       </a>
     </li>
     <li>
-      <a href="information.html">
+      <a href="#" onclick="InterSUB('info')">
         <i class="icon-edit"></i>
         <span>Information</span>
       </a>
     </li>
     <li>
-      <a href="recharge.html">
+      <a href="#" onclick="InterSUB('recharge')">
         <i class="icon-signal"></i>
         <span>Recharge</span>
       </a>
@@ -58,7 +58,7 @@
         <div class="arrow"></div>
         <div class="arrow_border"></div>
       </div>
-      <a href="purchase_history.html">
+      <a href="#" onclick="InterSUB('purchase')">
         <i class="icon-calendar-empty"></i>
         <span>Purchase History</span>
       </a>
@@ -261,10 +261,22 @@
     }
   }
 
+  function InterSUB(str){
+    var form = document.createElement("FORM");
+    document.body.appendChild(form);
+    form.method = "POST";
+    var newElement = document.createElement("input");
+    newElement.setAttribute("name", "ACCOUNT");
+    newElement.setAttribute("type", "hidden");
+    form.appendChild(newElement);
+    newElement.value = __ACCOUNT;
+    form.action = str;
+    form.submit();
+  }
+
 
 </script>
 
 
-</script>
 </body>
 </html>

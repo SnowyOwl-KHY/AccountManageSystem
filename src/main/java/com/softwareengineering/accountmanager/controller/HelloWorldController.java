@@ -12,7 +12,7 @@ import java.util.Date;
 
 @Controller
 public class HelloWorldController {
-    @RequestMapping("/")
+    @RequestMapping("/main")
     public ModelAndView handleRequest(HttpServletRequest req, HttpServletResponse resp) throws Exception {
         ModelAndView mv = new ModelAndView();
         mv.addObject("message", "Hello World!");

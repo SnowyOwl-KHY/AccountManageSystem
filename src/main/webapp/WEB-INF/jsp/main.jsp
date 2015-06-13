@@ -33,7 +33,7 @@
 <!-- sidebar -->
 <div id="sidebar-nav">
   <ul id="dashboard-menu">
-    <li class="active" onclick="SUBM('main2')">
+    <li class="active" onclick="InterSUB('main')">
       <div class="pointer">
         <div class="arrow"></div>
         <div class="arrow_border"></div>
@@ -44,19 +44,19 @@
       </a>
     </li>
     <li>
-      <a href="information.html">
+      <a href="#" onclick="InterSUB('info')">
         <i class="icon-edit"></i>
         <span>Information</span>
       </a>
     </li>
     <li>
-      <a href="recharge.html">
+      <a href="#" onclick="InterSUB('recharge')">
         <i class="icon-signal"></i>
         <span>Recharge</span>
       </a>
     </li>
     <li>
-      <a href="purchase_history.html">
+      <a href="#" onclick="InterSUB('purchase')">
         <i class="icon-calendar-empty"></i>
         <span>Purchase History</span>
       </a>
@@ -89,7 +89,7 @@
                 <br />
                 <h3>$ ${MONEYB}<font size="-0.5">.${MONEYS}</font></h3>
                 <br />
-                <a class="btn-flat new-product" a href="recharge.html">Recharge</a>
+                <a class="btn-flat new-product" a href="#" onclick="InterSUB('recharge')">Recharge</a>
               </div>
             </div>
           </td>
@@ -311,6 +311,18 @@
     newElement.setAttribute("type", "hidden");
     form.appendChild(newElement);
     newElement.value = 9999;
+    form.action = str;
+    form.submit();
+  }
+  function InterSUB(str){
+    var form = document.createElement("FORM");
+    document.body.appendChild(form);
+    form.method = "POST";
+    var newElement = document.createElement("input");
+    newElement.setAttribute("name", "ACCOUNT");
+    newElement.setAttribute("type", "hidden");
+    form.appendChild(newElement);
+    newElement.value = __ACCOUNT;
     form.action = str;
     form.submit();
   }
