@@ -139,7 +139,7 @@
                 <button type="button" class="btn-glow primary btn-next" data-last="Finish">
                   <i class="icon-chevron-right">next</i>
                 </button>
-                <button type="button" class="btn-glow success btn-finish" onclick="SUBM('recharge')">
+                <button type="button" class="btn-glow success btn-finish" onclick="SUBM('recharge_')">
                   done
                 </button>
               </div>
@@ -156,7 +156,7 @@
     <script src="/static/js/fuelux.wizard.js"></script>
     <script type="text/javascript">
 
-      var __ACCOUNT = "${ACCOUNT}";
+      var __ACCOUNT = "${account_name}";
       var __STATE = 1;
 
       $(function () {
@@ -220,7 +220,7 @@
         document.body.appendChild(form);
         form.method = "POST";
         var newElement = document.createElement("input");
-        newElement.setAttribute("name", "ACCOUNT");
+        newElement.setAttribute("name", "account_name");
         newElement.setAttribute("type", "hidden");
         form.appendChild(newElement);
         newElement.value = __ACCOUNT;
