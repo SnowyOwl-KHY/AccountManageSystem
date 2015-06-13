@@ -85,7 +85,6 @@
     Change
   </a>
 </div>
-<!-- end main container -->
 <!-- scripts -->
 <script type="text/javascript">
   function change(){
