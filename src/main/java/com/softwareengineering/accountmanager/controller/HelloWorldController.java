@@ -88,4 +88,38 @@ public class HelloWorldController {
         mv.setViewName("information");
         return mv;
     }
+
+    @RequestMapping("/recharge")
+    public ModelAndView handleRequest4(HttpServletRequest req, HttpServletResponse resp) throws Exception {
+        ModelAndView mv = new ModelAndView();
+        mv.addObject("ACCOUNT","ACCOUNT10001");
+        mv.setViewName("recharge");
+        return mv;
+    }
+    @RequestMapping("/purchase")
+    public ModelAndView handleRequest5(HttpServletRequest req, HttpServletResponse resp) throws Exception {
+        ModelAndView mv = new ModelAndView();
+        mv.addObject("ACCOUNT","ACCOUNT10001");
+
+        PurchaseRecord[] p = new PurchaseRecord[15];
+        p[0] = new PurchaseRecord("ACCOUNT1001",new Date(10000001),99999990,400);
+        p[1] = new PurchaseRecord("ACCOUNT1001",new Date(10000002),99999991,200);
+        p[2] = new PurchaseRecord("ACCOUNT1001",new Date(10000003),99999992,330);
+        p[3] = new PurchaseRecord("ACCOUNT1001",new Date(10000004),99999993,304);
+        p[4] = new PurchaseRecord("ACCOUNT1001",new Date(10000005),99999994,100);
+        p[5] = new PurchaseRecord("ACCOUNT1001",new Date(10000006),99999995,90);
+        p[6] = new PurchaseRecord("ACCOUNT1001",new Date(10000007),99999996,3000);
+        p[7] = new PurchaseRecord("ACCOUNT1001",new Date(10000008),99999997,304);
+        p[8] = new PurchaseRecord("ACCOUNT1001",new Date(10000009),99999998,400);
+        p[9] = new PurchaseRecord("ACCOUNT1001",new Date(10000000),99999999,60);
+        p[10] = new PurchaseRecord("ACCOUNT1001",new Date(10000001),99999990,400);
+        p[11] = new PurchaseRecord("ACCOUNT1001",new Date(10000002),99999991,200);
+        p[12] = new PurchaseRecord("ACCOUNT1001",new Date(10000003),99999992,330);
+        p[13] = new PurchaseRecord("ACCOUNT1001",new Date(10000004),99999993,304);
+        p[14] = new PurchaseRecord("ACCOUNT1001",new Date(10000005),99999994,100);
+        mv.addObject("Purchase",p);
+
+        mv.setViewName("purchase");
+        return mv;
+    }
 }
