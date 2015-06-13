@@ -5,29 +5,39 @@ import javax.servlet.http.HttpServletResponse;
 import com.softwareengineering.accountmanager.model.DatabaseManager;
 import com.softwareengineering.accountmanager.model.data.CommonInformation;
 import com.softwareengineering.accountmanager.model.data.SecurityInformation;
+import org.springframework.http.HttpRequest;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.stereotype.*;
 @Controller
 public class PayPasswordController {
     private DatabaseManager DB;
-    @RequestMapping("/pay_password_change")
+    @RequestMapping("/pay_password_change_")
     public ModelAndView handleRequest(HttpServletRequest req, HttpServletResponse resp) throws Exception {
 
         DB =new DatabaseManager();
         ModelAndView mv = new ModelAndView();
-        String paywordOld = (String)req.getAttribute("paywordOld");
-        String paywordNew = (String) req.getAttribute("paywordNew");
-        String account_name = (String)req.getAttribute("account_name");
+        String paywordOld = req.getParameter("paywordOld");
+        String paywordNew = req.getParameter("paywordNew");
+        String account_name = req.getParameter("account_name");
         boolean judge = DB.checkPayPassword(account_name,paywordOld);
         if(judge){
             DB.changePayPassword(account_name,paywordNew);
             mv.addObject("account_name",account_name);
-            mv.setViewName("payword_success");
+            mv.setViewName("success");
         }else{
             mv.addObject("account_name",account_name);
-            mv.setViewName("payword_false");
+            mv.setViewName("false");
         }
+        return mv;
+    }
+
+    @RequestMapping("/pay_password_change")
+    public ModelAndView EntryPayChange(HttpServletRequest req,HttpServletResponse resq)throws Exception{
+        String account_name = req.getParameter("account_name");
+        ModelAndView mv = new ModelAndView();
+        mv.addObject("account_name",account_name);
+        mv.setViewName("pay_password");
         return mv;
     }
 }

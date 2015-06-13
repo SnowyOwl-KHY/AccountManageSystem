@@ -1,40 +1,51 @@
 package com.softwareengineering.accountmanager.controller;
 
 /**
- * Created by Ò×Èå on 2015/6/12.
+ * Created by æ˜“å„’ on 2015/6/12.
  */
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.softwareengineering.accountmanager.model.DatabaseManager;
 import com.softwareengineering.accountmanager.model.data.CommonInformation;
+import com.softwareengineering.accountmanager.model.data.PurchaseRecord;
 import com.softwareengineering.accountmanager.model.data.SecurityInformation;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.stereotype.*;
+
+import java.util.List;
+
 @Controller
 public class LoginController {
     private DatabaseManager DB;
     @RequestMapping("/login")
     public ModelAndView handleRequest(HttpServletRequest req, HttpServletResponse resp) throws Exception {
 
-        ModelAndView mv = new ModelAndView();// ½¨Á¢ĞÂµÄÒ³Ãæ
-        String account_name = (String)req.getAttribute("account_name");//µÃµ½ÓÃ»§Ãû
-        String password = (String)req.getAttribute("password");//µÃµ½ÃÜÂë
-        DB =new DatabaseManager();//Êı¾İ¿â¶ÔÏó
-        boolean judgeAccount;//ÅĞ¶ÏÃÜÂëºÍÓÃ»§ÃûÊÇ·ñ·ûºÏ
+        ModelAndView mv = new ModelAndView();// å»ºç«‹æ–°çš„é¡µé¢
+        String account_name = req.getParameter("account_name");//å¾—åˆ°ç”¨æˆ·å
+        String password = req.getParameter("password");//å¾—åˆ°å¯†ç 
+        if(account_name == null) {
+            mv.setViewName("login");
+            mv.addObject("judge",true);
+            return mv;
+        }
+        DB =new DatabaseManager();//æ•°æ®åº“å¯¹è±¡
+        boolean judgeAccount;//åˆ¤æ–­å¯†ç å’Œç”¨æˆ·åæ˜¯å¦ç¬¦åˆ
         judgeAccount = DB.checkPassword(account_name, password);
         if (judgeAccount) {
-            CommonInformation s = DB.queryCommonInformation(account_name);
+            Double balance = DB.queryBalance(account_name);
+            List<PurchaseRecord> record = DB.queryPurchaseRecordByAccountName(account_name);
+            mv.addObject("balance",balance);
+            mv.addObject("record",record);
             mv.addObject("account_name",account_name);
-            mv.addObject("information",s);
-            mv.addObject("url",req.getRequestURL());
-            mv.setViewName("main");
+            mv.setViewName("home");
             return mv;
         }
         else{
             mv.addObject("account_name",account_name);
-            mv.setViewName("login error");
+            mv.addObject("judge",false);
+            mv.setViewName("login");
             return  mv;
         }
     }

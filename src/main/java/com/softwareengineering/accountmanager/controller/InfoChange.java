@@ -15,11 +15,19 @@ public class InfoChange {
     public ModelAndView handleRequest(HttpServletRequest req, HttpServletResponse resp) throws Exception {
         DB =new DatabaseManager();
         ModelAndView mv = new ModelAndView();
-        CommonInformation info = (CommonInformation)req.getAttribute("info");
-        String account_name = (String)req.getAttribute("account_name");
+        String account_name = req.getParameter("account_name");
+        String nickname = req.getParameter("nickname");
+        String name = req.getParameter("name");
+        String country = req.getParameter("country");
+        String birthyday = req.getParameter("birthday");
+        String phone = req.getParameter("phone");
+        String text = req.getParameter("text");
+        String postcode = req.getParameter("postcode");
+        String gender = req.getParameter("gender");
+        CommonInformation info = new CommonInformation(account_name,nickname,name,country,birthyday,phone,text,postcode,gender);
         DB.updateCommonInformation(info);
         mv.addObject("account_name",account_name);
-        mv.setViewName("info_success");
+        mv.setViewName("success");
         return mv;
     }
 }

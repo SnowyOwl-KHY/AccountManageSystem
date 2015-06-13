@@ -1,7 +1,7 @@
 package com.softwareengineering.accountmanager.controller;
 
 /**
- * Created by Ò×Èå on 2015/6/12.
+ * Created by æ˜“å„’ on 2015/6/12.
  */
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -18,11 +18,16 @@ public class LogupController {
     @RequestMapping("/logup")
     public ModelAndView handleRequest(HttpServletRequest req, HttpServletResponse resp) throws Exception {
 
-        ModelAndView mv = new ModelAndView();// ½¨Á¢ĞÂµÄÒ³Ãæ
-        String account_name = (String)req.getAttribute("account_name");//µÃµ½ÓÃ»§Ãû
-        String password = (String)req.getAttribute("password");//µÃµ½ÃÜÂë
-        String pay_password = (String)req.getAttribute("pay_password");//µÃµ½Ö§¸¶ÃÜÂë
-        DB =new DatabaseManager();//Êı¾İ¿â¶ÔÏó
+        ModelAndView mv = new ModelAndView();// å»ºç«‹æ–°çš„é¡µé¢
+        String account_name = req.getParameter("account_name");//å¾—åˆ°ç”¨æˆ·å
+        String password = req.getParameter("password");//å¾—åˆ°å¯†ç 
+        String pay_password = req.getParameter("pay_password");//å¾—åˆ°æ”¯ä»˜å¯†ç 
+        if(account_name == null)
+        {
+            mv.setViewName("lopup");
+            return mv;
+        }
+        DB =new DatabaseManager();//æ•°æ®åº“å¯¹è±¡
         Boolean exist = DB.existUser(account_name);
         if(!exist) {
             DB.addUser(account_name,password,pay_password);

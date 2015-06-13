@@ -16,11 +16,10 @@ public class InfoController {
 
         ModelAndView mv = new ModelAndView();
         DB =new DatabaseManager();
-        String account_name = (String)req.getAttribute("account_name");
+        String account_name = req.getParameter("account_name");
         CommonInformation info = DB.queryCommonInformation(account_name);
         mv.addObject("info",info);
         mv.addObject("account_name",account_name);
-        mv.addObject("url", req.getRequestURL());
         mv.setViewName("person_info");
         return mv;
     }

@@ -19,7 +19,7 @@ public class RecordController {
     public ModelAndView handleRequest(HttpServletRequest req, HttpServletResponse resp) throws Exception {
         DB =new DatabaseManager();
         ModelAndView mv = new ModelAndView();
-        String account_name = (String)req.getAttribute("account_name");
+        String account_name = req.getParameter("account_name");
         List<PurchaseRecord> record = DB.queryPurchaseRecordByAccountName(account_name);
         mv.addObject("account_name",account_name);
         mv.addObject("record",record);
