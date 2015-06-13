@@ -90,11 +90,11 @@
           </div>
           <div class="span12 field-box">
             <label>Nickname:</label>
-            <input class="span9" type="text" id="_nickname" placeholder="${nickname}" name="nickname"/>
+            <input class="span9" type="text" id="_nickname" placeholder="${info.getNickname()}" name="nickname"/>
           </div>
           <div class="span12 field-box">
             <label>Name:</label>
-            <input class="span9" type="text" id="_name" name="name" placeholder="${name}"/>
+            <input class="span9" type="text" id="_name" name="name" placeholder="${info.getRealName()}"/>
           </div>
           <div class="span12 field-box">
             <label>Gender:</label>
@@ -106,7 +106,7 @@
                 <div class="radio"><span class="checked"><input type="radio" name="optionsRadios" id="optionsRadios2" value="female"></span></div>female
               </label>
               <label class="radio">
-                <div class="radio"><span class="checked"><input type="radio" name="optionsRadios" id="optionsRadios2" value="else"></span></div>else
+                <div class="radio"><span class="checked"><input type="radio" name="optionsRadios" id="optionsRadios3" value="else"></span></div>else
               </label>
             </div>
           </div>
@@ -126,28 +126,28 @@
           </div>
           <div class="field-box">
             <label>Date of birth:</label>
-            <input type="text" placeholder="${birthday}" class="input-large datepicker" id="_birthday" name="birthday">
+            <input type="text" placeholder="${info.getBirthday()}" class="input-large datepicker" id="_birthday" name="birthday">
           </div>
           <div class="span12 field-box">
             <label>Phone:</label>
-            <input class="span9" type="text" placeholder="${phone}" id="_phone"name="phone"/>
+            <input class="span9" type="text" placeholder="${info.getPhone()}" id="_phone"name="phone"/>
           </div>
           <div class="span12 field-box">
             <label>Address:</label>
             <div class="address-fields">
-              <input class="span12" type="text" placeholder="${address}" id="_addr1" name="address"/>
+              <input class="span12" type="text" placeholder="${info.getAddress()}" id="_addr1" name="address"/>
               <input class="span12 small" type="text" placeholder="Beijing" id="_addr2"/>
               <input class="span12 small" type="text" placeholder="China" id="_addr3"/>
-              <input class="span12 small last" type="text" placeholder="${postcode}" id="_postcode" name="postcode"/>
+              <input class="span12 small last" type="text" placeholder="${info.getPostcode()}" id="_postcode" name="postcode"/>
             </div>
           </div>
           <div class="span12 field-box textarea">
             <label>Personal profile:</label>
-            <textarea class="span9" id="_text" name="text" onKeyDown="textdown()" placeholder="${text}"></textarea>
+            <textarea class="span9" id="_text" name="text" onKeyDown="textdown()" placeholder="${info.getText()}"></textarea>
             <span class="charactersleft">no more than 200 words</span>
           </div>
           <div class="span11 field-box actions">
-            <input type="button" class="btn-glow primary" value="Save" onclick="SUBM('info2')"/>
+            <input type="button" class="btn-glow primary" value="Save" onclick="SUBM('info_change')"/>
           </div>
           </form>
         </div>
@@ -196,24 +196,14 @@
 
   var radios=document.getElementsByName("optionsRadios");
   for (var i=0;i<radios.length;i++){ //遍历Radio
-    if(radios[i].value=="${gender}")
+    if(radios[i].value=="${info.getGender()}")
       radios[i].checked=true;
   }
 
-  document.getElementById("_country").value="${country}";
+  document.getElementById("_country").value="${info.getCountry}";
 
 
 
-  function saveinfo(){
-    console.log("the value of Nickname:",document.getElementById("_nickname").value);
-    console.log("the value of name:",document.getElementById("_name").value);
-    console.log("gender is:",j_gender);
-    console.log("country is :",document.getElementById("_country").value);
-    console.log("birthday is :",document.getElementById("_birthday").value);
-    console.log("phone is:",document.getElementById("_phone").value);
-    console.log("address is:",document.getElementById("_addr1").value);
-    console.log("text is:",document.getElementById("_text").value);
-  }
   function textdown()
   {
     console.log("进入了keyup");
@@ -225,10 +215,6 @@
     }
   }
   function SUBM(str){
-
-    var name=document.getElementById("_name");
-    var nickname=document.getElementById("_nickname");
-
 
     var phonenumber=document.getElementById("_phone").value;
     if(isNaN(phonenumber)){
@@ -254,7 +240,7 @@
     form.method = "POST";
 
     var newElement = document.createElement("input");
-    newElement.setAttribute("name", "ACCOUNT");
+    newElement.setAttribute("name", "account_name");
     newElement.setAttribute("type", "hidden");
     newElement.value = __ACCOUNT;
     form.appendChild(newElement);
