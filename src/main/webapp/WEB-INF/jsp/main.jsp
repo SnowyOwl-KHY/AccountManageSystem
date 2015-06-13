@@ -38,7 +38,7 @@
         <div class="arrow"></div>
         <div class="arrow_border"></div>
       </div>
-      <a href="#">
+      <a href="#" onclick="InterSUB('main')">
         <i class="icon-home"></i>
         <span>Home</span>
       </a>

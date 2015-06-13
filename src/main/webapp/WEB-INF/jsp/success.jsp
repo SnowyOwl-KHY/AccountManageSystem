@@ -52,18 +52,18 @@
         <span>Recharge</span>
       </a>
     </li>
-    <li class="active">
-      <div class="pointer">
-        <div class="arrow"></div>
-        <div class="arrow_border"></div>
-      </div>
+    <li>
       <a href="#" onclick="InterSUB('purchase')">
         <i class="icon-calendar-empty"></i>
         <span>Purchase History</span>
       </a>
     </li>
     <li>
-      <a href="change_password.html">
+      <div class="pointer">
+        <div class="arrow"></div>
+        <div class="arrow_border"></div>
+      </div>
+      <a href="#" onclick="InterSUB('pay_password_change')">
         <i class="icon-cog"></i>
         <span>Change Password</span>
       </a>
@@ -82,7 +82,7 @@
 </div>
 
 <script type="text/javascript">
-  var __ACCOUNT = "${ACCOUNT}";
+  var __ACCOUNT = "${account_name}";
   var __STATE = 1;
 
   function InterSUB(str){
@@ -90,7 +90,7 @@
     document.body.appendChild(form);
     form.method = "POST";
     var newElement = document.createElement("input");
-    newElement.setAttribute("name", "ACCOUNT");
+    newElement.setAttribute("name", "account_name");
     newElement.setAttribute("type", "hidden");
     form.appendChild(newElement);
     newElement.value = __ACCOUNT;

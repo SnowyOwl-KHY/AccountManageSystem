@@ -64,7 +64,7 @@
       </a>
     </li>
     <li>
-      <a href="change_password.html">
+      <a href="#" onclick="InterSUB('pay_password_change')">
         <i class="icon-cog"></i>
         <span>Change Password</span>
       </a>
