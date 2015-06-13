@@ -191,7 +191,7 @@
 
 <script type="text/javascript">
 
-  var __ACCOUNT = "${ACCOUNT}";
+  var __ACCOUNT = "${account_name}";
   var __STATE = 1;
 
   var radios=document.getElementsByName("optionsRadios");
@@ -283,7 +283,7 @@
     document.body.appendChild(form);
     form.method = "POST";
     var newElement = document.createElement("input");
-    newElement.setAttribute("name", "ACCOUNT");
+    newElement.setAttribute("name", "account_name");
     newElement.setAttribute("type", "hidden");
     form.appendChild(newElement);
     newElement.value = __ACCOUNT;

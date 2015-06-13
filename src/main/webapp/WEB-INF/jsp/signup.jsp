@@ -12,9 +12,9 @@
   <div class="box">
     <div style="width:82%;margin:0 auto;">
       <h6 align="center">SIGN UP</h6>
-      <input type="text" id="email" placeholder="Email-address" />
-      <input type="password" id="pw1" placeholder="Password" />
-      <input type="password" id="pw2" placeholder="Confirm Password" />
+      <input type="text" id="email" placeholder="Email-address" name="account_name"/>
+      <input type="password" id="pw1" placeholder="Password"/>
+      <input type="password" id="pw2" placeholder="Confirm Password"/>
       <br />
       <br />
       <a class="btn" onclick="signup()">sign up</a>
@@ -29,17 +29,18 @@
 <script type="text/javascript">
   function signup(){
     var email = document.getElementById("email").value;
+    //console.log(email);
     var pw1 = document.getElementById("pw1").value;
     var pw2 = document.getElementById("pw2").value;
-    var sReg = /[_a-zA-Z\d\-\.]+@[_a-zA-Z\d\-]+(\.[_a-zA-Z\d\-]+)+$/;
+    //var sReg = /[_a-zA-Z\d\-\.]+@[_a-zA-Z\d\-]+(\.[_a-zA-Z\d\-]+)+$/;
     if(email==""){
       alert("Please enter email address!");
       return false;
     }
-    if(!sReg.test(email)){
-      alert("Please enter valid email address!");
-      return false;
-    }
+//    if(!sReg.test(email)){
+//      alert("Please enter valid email address!");
+//      return false;
+//    }
     if(pw1==""){
       alert("Please enter password!");
       return false;
@@ -54,27 +55,23 @@
     }
     submit(email, pw1);
   }
-  function submit(email, pw){
-    var posturl = "";
-    var email = email;
-    var pw = pw;
+  function submit(email,pw1){
     var form = document.createElement("FORM");
     document.body.appendChild(form);
     form.method = "POST";
     var newElement = document.createElement("input");
-    newElement.setAttribute("name", "email");
+    newElement.setAttribute("name", "account_name");
     newElement.setAttribute("type", "hidden");
     var newElement2 = document.createElement("input");
-    newElement2.setAttribute("name", "pw");
+    newElement2.setAttribute("name", "password");
     newElement2.setAttribute("type", "hidden");
     form.appendChild(newElement);
     form.appendChild(newElement2);
     newElement.value = email;
-    newElement2.value = pw;
-    form.action = posturl;
+    newElement2.value = pw1;
+    form.action = "signup";
     form.submit();
   }
-</script>
 </script>
 </body>
 </html>

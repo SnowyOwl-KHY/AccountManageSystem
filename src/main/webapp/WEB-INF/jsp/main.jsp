@@ -87,7 +87,7 @@
               <h4 class="title">Account Balance</h4>
               <div class="span12">
                 <br />
-                <h3>$ ${MONEYB}<font size="-0.5">.${MONEYS}</font></h3>
+                <h3>$ ${balance}<font size="-0.5"></font></h3>
                 <br />
                 <a class="btn-flat new-product" a href="#" onclick="InterSUB('recharge')">Recharge</a>
               </div>
@@ -170,7 +170,7 @@
             <tbody >
             <!-- row -->
             <%
-              PurchaseRecord[] pp = (PurchaseRecord [])request.getAttribute("Purchase");
+              PurchaseRecord[] pp = (PurchaseRecord [])request.getAttribute("record");
               for(int i = 0;i<pp.length;i++){
             %>
             <tr >
@@ -210,7 +210,7 @@
 <script src="/static/js/jquery.flot.resize.js"></script>
 <script src="/static/js/theme.js"></script>
 <script type="text/javascript">
-  var __ACCOUNT = "${ACCOUNT}";
+  var __ACCOUNT = "${account_name}";
   var __STATE = 1;
   console.log(__ACCOUNT);
   var records = $("#PurchaseRecord tr");
@@ -302,24 +302,13 @@
       return false;
     }
   }
-  function SUBM(str){
-    var form = document.createElement("FORM");
-    document.body.appendChild(form);
-    form.method = "POST";
-    var newElement = document.createElement("input");
-    newElement.setAttribute("name", "MONEYS");
-    newElement.setAttribute("type", "hidden");
-    form.appendChild(newElement);
-    newElement.value = 9999;
-    form.action = str;
-    form.submit();
-  }
+
   function InterSUB(str){
     var form = document.createElement("FORM");
     document.body.appendChild(form);
     form.method = "POST";
     var newElement = document.createElement("input");
-    newElement.setAttribute("name", "ACCOUNT");
+    newElement.setAttribute("name", "account_name");
     newElement.setAttribute("type", "hidden");
     form.appendChild(newElement);
     newElement.value = __ACCOUNT;

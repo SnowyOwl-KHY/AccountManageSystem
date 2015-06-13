@@ -140,4 +140,36 @@ public class HelloWorldController {
         mv.setViewName("fail");
         return mv;
     }
+
+    @RequestMapping("/change_password")
+    public ModelAndView handleRequest8(HttpServletRequest req, HttpServletResponse resp) throws Exception {
+        ModelAndView mv = new ModelAndView();
+        mv.addObject("ACCOUNT","ACCOUNT10001");
+        mv.setViewName("change_password");
+        return mv;
+    }
+
+
+    @RequestMapping("/signup")
+    public ModelAndView handleRequest10(HttpServletRequest req, HttpServletResponse resp) throws Exception {
+        ModelAndView mv = new ModelAndView();
+        mv.addObject("ACCOUNT","ACCOUNT10001");
+        mv.setViewName("signup");
+        return mv;
+    }
+    @RequestMapping("/signin")
+    public ModelAndView handleRequest11(HttpServletRequest req, HttpServletResponse resp) throws Exception {
+        ModelAndView mv = new ModelAndView();
+        mv.addObject("ACCOUNT","ACCOUNT10001");
+        mv.setViewName("signin");
+        return mv;
+    }
+
+    @RequestMapping("/forget_password")
+    public ModelAndView handleRequest12(HttpServletRequest req, HttpServletResponse resp) throws Exception {
+        ModelAndView mv = new ModelAndView();
+        mv.addObject("ACCOUNT","ACCOUNT10001");
+        mv.setViewName("forget_password");
+        return mv;
+    }
 }

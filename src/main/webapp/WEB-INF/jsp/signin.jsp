@@ -24,7 +24,7 @@
   </div>
   <div class="no-account">
     <p>No account?</p>
-    <a href="signup.jsp">sign up</a>
+    <a href="signup">sign up</a>
   </div>
 </div>
 <!-- scripts -->
@@ -43,17 +43,17 @@
     submit(un, pw);
   }
   function submit(un, pw){
-    var posturl = "";
+    var posturl = "signin";
     var un = un;
     var pw = pw;
     var form = document.createElement("FORM");
     document.body.appendChild(form);
     form.method = "POST";
     var newElement = document.createElement("input");
-    newElement.setAttribute("name", "un");
+    newElement.setAttribute("name", "account_name");
     newElement.setAttribute("type", "hidden");
     var newElement2 = document.createElement("input");
-    newElement2.setAttribute("name", "pw");
+    newElement2.setAttribute("name", "password");
     newElement2.setAttribute("type", "hidden");
     form.appendChild(newElement);
     form.appendChild(newElement2);

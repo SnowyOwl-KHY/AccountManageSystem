@@ -5,21 +5,21 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
   <!-- bootstrap -->
-  <link href="css/bootstrap/bootstrap.css" rel="stylesheet" />
-  <link href="css/bootstrap/bootstrap-responsive.css" rel="stylesheet" />
-  <link href="css/bootstrap/bootstrap-overrides.css" type="text/css" rel="stylesheet" />
+  <link href="/static/css/bootstrap/bootstrap.css" rel="stylesheet" />
+  <link href="/static/css/bootstrap/bootstrap-responsive.css" rel="stylesheet" />
+  <link href="/static/css/bootstrap/bootstrap-overrides.css" type="text/css" rel="stylesheet" />
   <!-- libraries -->
-  <link href="css/lib/bootstrap-wysihtml5.css" type="text/css" rel="stylesheet" />
-  <link href="css/lib/uniform.default.css" type="text/css" rel="stylesheet" />
-  <link href="css/lib/select2.css" type="text/css" rel="stylesheet" />
-  <link href="css/lib/bootstrap.datepicker.css" type="text/css" rel="stylesheet" />
-  <link href="css/lib/font-awesome.css" type="text/css" rel="stylesheet" />
+  <link href="/static/css/lib/bootstrap-wysihtml5.css" type="text/css" rel="stylesheet" />
+  <link href="/static/css/lib/uniform.default.css" type="text/css" rel="stylesheet" />
+  <link href="/static/css/lib/select2.css" type="text/css" rel="stylesheet" />
+  <link href="/static/css/lib/bootstrap.datepicker.css" type="text/css" rel="stylesheet" />
+  <link href="/static/css/lib/font-awesome.css" type="text/css" rel="stylesheet" />
   <!-- global styles -->
-  <link rel="stylesheet" type="text/css" href="css/layout.css" />
-  <link rel="stylesheet" type="text/css" href="css/elements.css" />
-  <link rel="stylesheet" type="text/css" href="css/icons.css" />
+  <link rel="stylesheet" type="text/css" href="/static/css/layout.css" />
+  <link rel="stylesheet" type="text/css" href="/static/css/elements.css" />
+  <link rel="stylesheet" type="text/css" href="/static/css/icons.css" />
   <!-- this page specific styles -->
-  <link rel="stylesheet" href="css/compiled/change.css" type="text/css" media="screen" />
+  <link rel="stylesheet" href="/static/css/compiled/change.css" type="text/css" media="screen" />
 </head>
 
 <body>
@@ -27,7 +27,7 @@
 <div class="navbar navbar-inverse">
   <div class="navbar-inner">
     <a class="brand" h
-       ref="main.html"><img src="img/logo.png" /></a>
+       ref="main.html"><img src="/static/img/logo.png" /></a>
   </div>
 </div>
 <!-- end navbar -->

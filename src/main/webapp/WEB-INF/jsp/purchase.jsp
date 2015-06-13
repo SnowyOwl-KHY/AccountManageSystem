@@ -115,7 +115,7 @@
             </thead>
             <tbody>
             <%
-              PurchaseRecord[] pp = (PurchaseRecord [])request.getAttribute("Purchase");
+              PurchaseRecord[] pp = (PurchaseRecord [])request.getAttribute("record");
               for(int i = 0;i<pp.length;i++){
             %>
             <!-- row -->
@@ -166,7 +166,7 @@
 <script src="/static/js/jquery.flot.resize.js"></script>
 <script src="/static/js/theme.js"></script>
 <script type="text/javascript">
-  var __ACCOUNT = "${ACCOUNT}";
+  var __ACCOUNT = "${account_name}";
   var __STATE = 1;
 
   var records = $("#PurchaseRecord tr");
@@ -266,7 +266,7 @@
     document.body.appendChild(form);
     form.method = "POST";
     var newElement = document.createElement("input");
-    newElement.setAttribute("name", "ACCOUNT");
+    newElement.setAttribute("name", "account_name");
     newElement.setAttribute("type", "hidden");
     form.appendChild(newElement);
     newElement.value = __ACCOUNT;
