@@ -17,14 +17,14 @@ public class InfoChange {
         ModelAndView mv = new ModelAndView();
         String account_name = req.getParameter("account_name");
         String nickname = req.getParameter("nickname");
-        String name = req.getParameter("name");
+        String realname = req.getParameter("realname");
         String country = req.getParameter("country");
         String birthyday = req.getParameter("birthday");
         String phone = req.getParameter("phone");
         String text = req.getParameter("text");
         String postcode = req.getParameter("postcode");
         String gender = req.getParameter("gender");
-        CommonInformation info = new CommonInformation(account_name,nickname,name,country,birthyday,phone,text,postcode,gender);
+        CommonInformation info = new CommonInformation(account_name,nickname,realname,country,birthyday,phone,text,postcode,gender);
         DB.updateCommonInformation(info);
         mv.addObject("account_name",account_name);
         mv.setViewName("success");
