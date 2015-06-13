@@ -126,9 +126,10 @@ public class DatabaseManager {
 
     public static void main(String[] args) {
         String out = "";
-        out += " " + new DatabaseManager().purchaseRecordManager.add(new PurchaseRecord("root", new java.util.Date(), 001, 10000));
-        out += " " + new DatabaseManager().purchaseRecordManager.add(new PurchaseRecord("root", new java.util.Date(), 002, 20000));
-        out += " " + new DatabaseManager().purchaseRecordManager.add(new PurchaseRecord("root", new java.util.Date(), 003, 30000));
+        CommonInformation info = new CommonInformation("root");
+        info.setNickname("test");
+        out += " " + new DatabaseManager().commonInformationManager.update(info);
+        System.out.println(out);
 //        out += " " + new DatabaseManager().purchaseRecordManager.deleteByAccountName("root");
 //        System.out.println(out);
 //        List<PurchaseRecord> purchaseRecords = new DatabaseManager().purchaseRecordManager.queryByAccountName("root");

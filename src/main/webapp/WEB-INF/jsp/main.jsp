@@ -1,4 +1,5 @@
 <%@ page import="com.softwareengineering.accountmanager.model.data.PurchaseRecord" %>
+<%@ page import="java.util.List" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %><!DOCTYPE html>
 <!DOCTYPE html>
 <html>
@@ -33,7 +34,7 @@
 <!-- sidebar -->
 <div id="sidebar-nav">
   <ul id="dashboard-menu">
-    <li class="active" onclick="InterSUB('main')">
+    <li class="active">
       <div class="pointer">
         <div class="arrow"></div>
         <div class="arrow_border"></div>
@@ -170,15 +171,15 @@
             <tbody >
             <!-- row -->
             <%
-              PurchaseRecord[] pp = (PurchaseRecord [])request.getAttribute("record");
-              for(int i = 0;i<pp.length;i++){
+              List<PurchaseRecord> pp = (List<PurchaseRecord>)request.getAttribute("record");
+              for(int i = 0;i<pp.size();i++){
             %>
             <tr >
               <td>
-                <a href="#"><%=pp[i].getMerchandiseId()%></a>
+                <a href="#"><%=pp.get(i).getMerchandiseId()%></a>
               </td>
               <td class="description">
-                <%=pp[i].getMoney()%>
+                <%=pp.get(i).getMoney()%>
               </td>
               <td>
                 <span class="label label-info">Shipped</span>
@@ -307,6 +308,7 @@
     var form = document.createElement("FORM");
     document.body.appendChild(form);
     form.method = "POST";
+
     var newElement = document.createElement("input");
     newElement.setAttribute("name", "account_name");
     newElement.setAttribute("type", "hidden");

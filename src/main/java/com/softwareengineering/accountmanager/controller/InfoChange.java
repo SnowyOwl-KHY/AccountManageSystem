@@ -26,9 +26,10 @@ public class InfoChange {
         String postcode = req.getParameter("postcode");
         String gender = req.getParameter("gender");
         CommonInformation info = new CommonInformation(account_name,nickname,realname,country,birthyday,phone,addr1,text,postcode,gender);
-        DB.updateCommonInformation(info);
+        boolean flag = DB.updateCommonInformation(info);
         mv.addObject("account_name",account_name);
         mv.addObject("info",info);
+        mv.addObject("flag", "flag: " + flag);
         mv.setViewName("information");
         return mv;
     }

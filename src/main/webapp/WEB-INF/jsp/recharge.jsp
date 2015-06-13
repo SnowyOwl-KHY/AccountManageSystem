@@ -208,6 +208,12 @@
         document.body.appendChild(form);
         form.method = "POST";
 
+        var newElement = document.createElement("input");
+        newElement.setAttribute("name", "account_name");
+        newElement.setAttribute("type", "hidden");
+        form.appendChild(newElement);
+        newElement.value = __ACCOUNT;
+
         form.appendChild(document.getElementById("_money"));
         form.appendChild(document.getElementById("_password"));
 

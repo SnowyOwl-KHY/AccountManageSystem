@@ -1,4 +1,5 @@
 <%@ page import="com.softwareengineering.accountmanager.model.data.PurchaseRecord" %>
+<%@ page import="java.util.List" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <!DOCTYPE html>
 <html>
@@ -115,19 +116,19 @@
             </thead>
             <tbody>
             <%
-              PurchaseRecord[] pp = (PurchaseRecord [])request.getAttribute("record");
-              for(int i = 0;i<pp.length;i++){
+              List<PurchaseRecord> pp = (List<PurchaseRecord>)request.getAttribute("record");
+              for(int i = 0;i<pp.size();i++){
             %>
             <!-- row -->
             <tr class="first">
               <td>
-                <a href="#"><%=pp[i].getMerchandiseId()%></a>
+                <a href="#"><%=pp.get(i).getMerchandiseId()%></a>
               </td>
               <td class="description">
-                <%=pp[i].getPurchaseDate()%>
+                <%=pp.get(i).getPurchaseDate()%>
               </td>
               <td class="description">
-                <%=pp[i].getMoney()%>
+                <%=pp.get(i).getMoney()%>
               </td>
               <td>
                 <span class="label label-success">Shipped</span>
@@ -167,6 +168,7 @@
 <script src="/static/js/theme.js"></script>
 <script type="text/javascript">
   var __ACCOUNT = "${account_name}";
+  console.log(__ACCOUNT);
   var __STATE = 1;
 
   var records = $("#PurchaseRecord tr");

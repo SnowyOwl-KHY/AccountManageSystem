@@ -27,7 +27,7 @@ public class PayPasswordController {
             mv.setViewName("success");
         }else{
             mv.addObject("account_name",account_name);
-            mv.setViewName("false");
+            mv.setViewName("fail");
         }
         return mv;
     }

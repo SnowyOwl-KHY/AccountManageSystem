@@ -25,7 +25,7 @@
 </div>
 <!-- scripts -->
 <script type="text/javascript">
-  var __ACCOUNT = ${account_name};
+  var __ACCOUNT = "${account_name}";
   function reset(){
     var pw1 = document.getElementById("pw1").value;
     var pw2 = document.getElementById("pw2").value;

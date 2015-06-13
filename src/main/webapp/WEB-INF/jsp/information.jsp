@@ -193,6 +193,8 @@
 
   var __ACCOUNT = "${account_name}";
   var __STATE = 1;
+  var __flag = "${flag}";
+  console.log(__flag);
 
   var radios=document.getElementsByName("optionsRadios");
   for (var i=0;i<radios.length;i++){ //遍历Radio
@@ -200,7 +202,7 @@
       radios[i].checked=true;
   }
 
-  document.getElementById("_country").value="${info.getCountry}";
+  document.getElementById("_country").value="${info.getCountry()}";
 
 
 

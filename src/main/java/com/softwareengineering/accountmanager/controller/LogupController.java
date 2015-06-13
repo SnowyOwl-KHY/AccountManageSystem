@@ -24,18 +24,18 @@ public class LogupController {
 
         ModelAndView mv = new ModelAndView();// 建立新的页面
         String account_name = req.getParameter("account_name");//得到用户名
-        String password = req.getParameter("password");//得到密码
-        String pay_password = new String(password);
         if(account_name == null)
         {
             mv.setViewName("signup");
             return mv;
         }
+        String password = req.getParameter("password");//得到密码
+        String pay_password = new String(password);
         DB =new DatabaseManager();//数据库对象
         Boolean exist = DB.existUser(account_name);
         if(!exist) {
             DB.addUser(account_name,password,pay_password);
-            Double balance = DB.queryBalance(account_name);
+            Double balance = Double.valueOf(0);
             List<PurchaseRecord> record = DB.queryPurchaseRecordByAccountName(account_name);
             mv.addObject("balance",balance);
             mv.addObject("record",record);

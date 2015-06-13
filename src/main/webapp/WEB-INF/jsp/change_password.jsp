@@ -18,7 +18,9 @@
   <link rel="stylesheet" type="text/css" href="/static/css/layout.css" />
   <link rel="stylesheet" type="text/css" href="/static/css/elements.css" />
   <link rel="stylesheet" type="text/css" href="/static/css/icons.css" />
+
   <!-- this page specific styles -->
+  <link rel="stylesheet" href="/static/css/compiled/information.css" type="text/css" media="screen" />
   <link rel="stylesheet" href="/static/css/compiled/change.css" type="text/css" media="screen" />
 </head>
 
@@ -74,11 +76,22 @@
 <!-- main container -->
 <div style="position:relative;margin-left:177px;">
   <div style="margin-left:100px;margin-top:100px;">
-    <label>Old Passworld:</label>
+    <div class="span12 field-box">
+      <label>Gender:</label>
+      <div class="span9">
+        <label class="radio">
+          <div class="radio" ><span class=""><input type="radio" name="optionsRadios" id="optionsRadios1" value="log" checked=""></span></div>Change Password
+        </label>
+        <label class="radio">
+          <div class="radio"><span class="checked"><input type="radio" name="optionsRadios" id="optionsRadios2" value="pay"></span></div>Change Pay Password
+        </label>
+      </div>
+    </div>
+    <label>Old Pay Passworld:</label>
     <input id="pw0" type="password" />
-    <label>New Password:</label>
+    <label>New Pay Password:</label>
     <input id="pw1" type="password" />
-    <label>Confirm New Password:</label>
+    <label>Confirm New Pay Password:</label>
     <input id="pw2" type="password" />
   </div>
   <a class="btn" onclick="change()" style="margin-left:100px;margin-top:50px;">
@@ -87,7 +100,7 @@
 </div>
 <!-- scripts -->
 <script type="text/javascript">
-  var __ACCOUNT = ${account_name};
+  var __ACCOUNT = "${account_name}";
   function change(){
     var pw0 = document.getElementById("pw0").value;
     var pw1 = document.getElementById("pw1").value;
@@ -108,11 +121,10 @@
       alert("Password confirm false!");
       return false;
     }
-    alert("Password change success!");
     submit(pw0, pw1);
   }
   function submit(pw0, pw1){
-    var posturl = "pay_password_chage_";
+    var posturl = "pay_password_change_";
     var pw0 = pw0;
     var pw1 = pw1;
     var form = document.createElement("FORM");

@@ -23,7 +23,7 @@
 
     <update id="updateCommonInformation" parameterClass="CommonInformation">
         UPDATE common_information
-        SET nickname = #nickname#
+        SET nickname = #nickname#,
         real_name = #realName#,
         country = #country#,
         birthday = #birthday#,

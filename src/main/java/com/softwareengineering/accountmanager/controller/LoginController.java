@@ -26,7 +26,7 @@ public class LoginController {
         String account_name = req.getParameter("account_name");//得到用户名
         String password = req.getParameter("password");//得到密码
         if(account_name == null) {
-            mv.setViewName("login");
+            mv.setViewName("signin");
             mv.addObject("judge",true);
             return mv;
         }

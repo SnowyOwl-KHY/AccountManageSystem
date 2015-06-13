@@ -20,6 +20,7 @@ public class BalanceController {
         Double balance = Double.parseDouble(req.getParameter("money"));
         boolean judge = DB.checkPayPassword(account_name,payword);
         if(judge){
+            balance += DB.queryBalance(account_name);
             DB.updateBalance(account_name,balance);
             mv.addObject("account_name",account_name);
             mv.setViewName("success");
