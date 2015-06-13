@@ -11,9 +11,9 @@ public class Account {
 
     private CommonInformation commonInformation = null;
 
-    private Balance balance;
+    private Balance balance = null;
 
-    private Set<PurchaseRecord> purchaseRecordSet;
+    private Set<PurchaseRecord> purchaseRecordSet = null;
 
     private Account() {
     }
