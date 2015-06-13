@@ -1,0 +1,18 @@
+.btn{
+    font-size: 20px;
+    border-radius: 4px;
+    padding: 5px 10px;
+    text-align: center;
+    display: inline-block;
+    border: 1px solid #e5e5e5;
+    vertical-align: middle;
+    cursor: pointer;
+    border-color: #2480c2;
+    color: #fff;
+    text-shadow: rgba(0,0,0,0.35) 0 1px 0;
+    box-shadow: 0px 1px 0px 0px rgba(255, 255, 255,0.2) inset 0px 1px 0px 0px rgba(255,255,255,0.5);
+    background: #54b3ff;
+    background: linear-gradient(#54b3ff,#0078d9);
+}
+.btn:hover { background: rgb(56, 155, 235); }
+.btn:active { background: rgb(56, 155, 235); }
