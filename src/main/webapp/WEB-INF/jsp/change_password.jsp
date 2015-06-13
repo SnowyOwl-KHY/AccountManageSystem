@@ -87,6 +87,7 @@
 </div>
 <!-- scripts -->
 <script type="text/javascript">
+  var __ACCOUNT = ${account_name};
   function change(){
     var pw0 = document.getElementById("pw0").value;
     var pw1 = document.getElementById("pw1").value;
@@ -111,22 +112,27 @@
     submit(pw0, pw1);
   }
   function submit(pw0, pw1){
-    var posturl = "";
+    var posturl = "pay_password_chage_";
     var pw0 = pw0;
     var pw1 = pw1;
     var form = document.createElement("FORM");
     document.body.appendChild(form);
     form.method = "POST";
     var newElement = document.createElement("input");
-    newElement.setAttribute("name", "pw0");
+    newElement.setAttribute("name", "old_password");
     newElement.setAttribute("type", "hidden");
     var newElement2 = document.createElement("input");
-    newElement2.setAttribute("name", "pw1");
+    newElement2.setAttribute("name", "new_password");
     newElement2.setAttribute("type", "hidden");
+    var newElement3 = document.createElement("input");
+    newElement3.setAttribute("name", "account_name");
+    newElement3.setAttribute("type", "hidden");
     form.appendChild(newElement);
     form.appendChild(newElement2);
+    form.appendChild(newElement3);
     newElement.value = pw0;
     newElement2.value = pw1;
+    newElement3.value = __ACCOUNT;
     form.action = posturl;
     form.submit();
   }
