@@ -1,4 +1,3 @@
-<%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -20,14 +19,15 @@
   <link rel="stylesheet" type="text/css" href="css/elements.css" />
   <link rel="stylesheet" type="text/css" href="css/icons.css" />
   <!-- this page specific styles -->
-  <link rel="stylesheet" href="/static/css/change.css" type="text/css" media="screen" />
+  <link rel="stylesheet" href="css/compiled/change.css" type="text/css" media="screen" />
 </head>
 
 <body>
 <!-- navbar -->
 <div class="navbar navbar-inverse">
   <div class="navbar-inner">
-    <a class="brand" href="main.html"><img src="img/logo.png" /></a>
+    <a class="brand" h
+       ref="main.html"><img src="img/logo.png" /></a>
   </div>
 </div>
 <!-- end navbar -->
@@ -72,43 +72,18 @@
 </div>
 <!-- end sidebar -->
 <!-- main container -->
-<div class="content">
-  <div class="container-fluid">
-    <div id="pad-wrapper">
-      <div class="row-fluid">
-        <div class="span12">
-          <div class="step-content">
-            <div class="step-pane active" id="step1">
-              <div class="row-fluid form-wrapper">
-                <div class="span8">
-                  <form />
-                  <div class="field-box">
-                    <label>Old Passworld:</label>
-                    <input class="span8" id="pw0" type="password" />
-                  </div>
-                  <div class="field-box">
-                    <label>New Password:</label>
-                    <input class="span8" id="pw1" type="password" />
-                  </div>
-                  <div class="field-box">
-                    <label>Confirm New Password:</label>
-                    <input class="span8" id="pw2" type="password" />
-                  </div>
-                  </form>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div class="wizard-actions">
-            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-            <button type="button" onclick="change()" class="btn-glow primary btn">
-              Change
-            </button>
-          </div>
-        </div>
-      </div>
-    </div>
+<div style="position:relative;margin-left:177px;">
+  <div style="margin-left:100px;margin-top:100px;">
+    <label>Old Passworld:</label>
+    <input id="pw0" type="password" />
+    <label>New Password:</label>
+    <input id="pw1" type="password" />
+    <label>Confirm New Password:</label>
+    <input id="pw2" type="password" />
   </div>
+  <a class="btn" onclick="change()" style="margin-left:100px;margin-top:50px;">
+    Change
+  </a>
 </div>
 <!-- end main container -->
 <!-- scripts -->
