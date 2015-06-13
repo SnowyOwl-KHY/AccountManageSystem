@@ -122,4 +122,22 @@ public class HelloWorldController {
         mv.setViewName("purchase");
         return mv;
     }
+
+
+    @RequestMapping("/success")
+    public ModelAndView handleRequest6(HttpServletRequest req, HttpServletResponse resp) throws Exception {
+        ModelAndView mv = new ModelAndView();
+        mv.addObject("ACCOUNT","ACCOUNT10001");
+        mv.setViewName("success");
+        return mv;
+    }
+
+
+    @RequestMapping("/fail")
+    public ModelAndView handleRequest7(HttpServletRequest req, HttpServletResponse resp) throws Exception {
+        ModelAndView mv = new ModelAndView();
+        mv.addObject("ACCOUNT","ACCOUNT10001");
+        mv.setViewName("fail");
+        return mv;
+    }
 }
