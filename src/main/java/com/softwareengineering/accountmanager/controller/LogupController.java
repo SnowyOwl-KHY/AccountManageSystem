@@ -28,6 +28,7 @@ public class LogupController {
         if(account_name == null)
         {
             mv.setViewName("signup");
+            mv.addObject("judge",true);
             return mv;
         }
         String password = req.getParameter("password");//得到密码
@@ -44,6 +45,7 @@ public class LogupController {
             mv.setViewName("main");
         }else{
             mv.addObject("account_name",account_name);
+            mv.addObject("judge",false);
             mv.setViewName("signup");
         }
         return mv;
