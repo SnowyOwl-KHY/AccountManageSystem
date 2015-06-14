@@ -26,6 +26,7 @@ public class LogupController {
         String account_name = req.getParameter("account_name");//得到用户名
         if(account_name == null)
         {
+            mv.addObject("judge",true);
             mv.setViewName("signup");
             return mv;
         }
@@ -43,6 +44,7 @@ public class LogupController {
             mv.setViewName("main");
         }else{
             mv.addObject("account_name",account_name);
+            mv.addObject("judge",false);
             mv.setViewName("logup_error");
         }
         return mv;

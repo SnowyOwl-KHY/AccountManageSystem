@@ -8,7 +8,8 @@
 </head>
 
 <body>
-<div class="signup-wrapper">
+<div class="signup-wrapper" style="top:150px;">
+  <p style="color: red;height: 20px;" id="wrong">Registration failure.</p>
   <div class="box">
     <div style="width:82%;margin:0 auto;">
       <h6 align="center">SIGN UP</h6>
@@ -72,6 +73,14 @@
     form.action = "signup";
     form.submit();
   }
+
+  if(${judge}==true){
+    document.getElementById("wrong").innerText="";
+  }
+  else{
+    document.getElementById("wrong").innerText="Registration failure.";
+  }
+
 </script>
 </body>
 </html>
