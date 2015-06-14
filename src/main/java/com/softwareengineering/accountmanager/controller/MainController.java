@@ -17,6 +17,11 @@ public class MainController {
         DB =new DatabaseManager();
         ModelAndView mv = new ModelAndView();
         String account_name = req.getParameter("account_name");
+        if (account_name == null || account_name.trim().equals("")) {
+            mv.addObject("judge", true);
+            mv.setViewName("signin");
+            return mv;
+        }
         Double balance = DB.queryBalance(account_name);
         List<PurchaseRecord> record = DB.queryPurchaseRecordByAccountName(account_name);
         mv.addObject("account_name",account_name);
