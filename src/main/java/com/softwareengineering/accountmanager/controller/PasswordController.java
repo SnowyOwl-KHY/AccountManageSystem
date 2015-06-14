@@ -1,7 +1,7 @@
 package com.softwareengineering.accountmanager.controller;
 
 /**
- * Created by Ò×Èå on 2015/6/12.
+ * Created by ï¿½ï¿½ï¿½ï¿½ on 2015/6/12.
  */
         import javax.servlet.http.HttpServletRequest;
         import javax.servlet.http.HttpServletResponse;
@@ -19,21 +19,14 @@ public class PasswordController {
     @RequestMapping("/reset_password_")
     public ModelAndView handleRequest(HttpServletRequest req, HttpServletResponse resp) throws Exception {
 
-        ModelAndView mv = new ModelAndView();// ½¨Á¢ÐÂµÄÒ³Ãæ
-        String account_name = req.getParameter("account_name");//µÃµ½ÓÃ»§Ãû
-        String old_password = req.getParameter("old_password");//µÃµ½¾ÍµÃÃÜÂë
-        String new_password = req.getParameter("new_password");//µÃµ½ÐÂÃÜÂë
-        String password = req.getParameter("password");
+        ModelAndView mv = new ModelAndView();// ï¿½ï¿½ï¿½ï¿½ï¿½Âµï¿½Ò³ï¿½ï¿½
+        String account_name = req.getParameter("account_name");//ï¿½Ãµï¿½ï¿½Ã»ï¿½ï¿½ï¿½
+        String old_password = req.getParameter("old_password");//ï¿½Ãµï¿½ï¿½Íµï¿½ï¿½ï¿½ï¿½ï¿½
+        String new_password = req.getParameter("new_password");//ï¿½Ãµï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 
 
-        DB =new DatabaseManager();//Êý¾Ý¿â¶ÔÏó
-        DB.changePassword(account_name,password);
-        mv.addObject("account_name",account_name);
-        mv.setViewName("success");
-        return mv;
-        /////////////////////////////////////////////////////////////
-        /*
-        boolean judge = DB.checkPassword(account_name,old_password);//ÅÐ¶Ï¾ÉÃÜÂëÊÇ·ñÕýÈ·
+        DB =new DatabaseManager();//ï¿½ï¿½Ý¿ï¿½ï¿½ï¿½ï¿½
+        boolean judge = DB.checkPassword(account_name,old_password);//ï¿½Ð¶Ï¾ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ç·ï¿½ï¿½ï¿½È·
         if(judge){
             DB.changePassword(account_name,new_password);
             mv.addObject("account_name",account_name);
@@ -43,7 +36,6 @@ public class PasswordController {
             mv.setViewName("fail");
         }
         return mv;
-        */
     }
     @RequestMapping("/reset_password")
     public ModelAndView EntryPasswordChange(HttpServletRequest req,HttpServletResponse resp)throws Exception{

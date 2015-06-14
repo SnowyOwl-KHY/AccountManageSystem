@@ -19,6 +19,10 @@ import java.util.List;
 @Controller
 public class LoginController {
     private DatabaseManager DB;
+    @RequestMapping("/")
+    public ModelAndView welcomePage(HttpServletRequest req, HttpServletResponse resp) throws Exception {
+        return handleRequest(req, resp);
+    }
     @RequestMapping("/signin")
     public ModelAndView handleRequest(HttpServletRequest req, HttpServletResponse resp) throws Exception {
 

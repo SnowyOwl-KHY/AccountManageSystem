@@ -29,7 +29,7 @@
 <div class="navbar navbar-inverse">
   <div class="navbar-inner">
     <a class="brand" h
-       ref="main.html"><img src="img/logo.png" /></a>
+       ref="main.html"><img src="static/img/logo.png" /></a>
   </div>
 </div>
 <!-- end navbar -->
