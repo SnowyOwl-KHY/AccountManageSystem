@@ -1,5 +1,5 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<html class="login-bg">
+<html class="bg">
 <head>
   <title>Online Payment - Sign in</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
