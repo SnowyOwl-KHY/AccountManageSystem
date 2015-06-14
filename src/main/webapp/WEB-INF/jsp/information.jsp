@@ -18,7 +18,6 @@
   <!-- this page specific styles -->
   <link rel="stylesheet" href="/static/css/compiled/information.css" type="text/css" media="screen" />
   <!-- open sans font -->
-  <link href='http://fonts.useso.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800' rel='stylesheet' type='text/css' />
   <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 </head>
 
@@ -26,8 +25,8 @@
 <!-- navbar -->
 <div class="navbar navbar-inverse">
   <div class="navbar-inner">
-    <a class="brand" href="main.html"><img src="/static/img/logo.png" /></a>
-    <div class="navbar-text">Good afternoon, ${account_name}</div>
+    <a class="brand" href="signin"><img src="/static/img/logo.png" /></a>
+    <div class="navbar-text">Hello, ${account_name}!</div>
   </div>
 </div>
 <!-- end navbar -->
@@ -263,13 +262,13 @@
     form.appendChild(newElement2);
     newElement2.value = j_gender;
 
-    if(document.getElementById("_nickname").value=="")document.getElementById("_nickname").value==__nickname;
-    if(document.getElementById("_name").value=="")document.getElementById("_name").value==__realname;
-    if(document.getElementById("_birthday").value=="")document.getElementById("_birthday").value==__birthday;
-    if(document.getElementById("_phone").value=="")document.getElementById("_phone").value==__phone;
-    if(document.getElementById("_addr1").value=="")document.getElementById("_addr1").value==__address;
-    if(document.getElementById("_text").value=="")document.getElementById("_text").value==__text;
-    if(document.getElementById("_postcode").value=="")document.getElementById("_postcode").value==__postcode;
+    if(document.getElementById("_nickname").value=="")document.getElementById("_nickname").value=__nickname;
+    if(document.getElementById("_name").value=="")document.getElementById("_name").value=__realname;
+    if(document.getElementById("_birthday").value=="")document.getElementById("_birthday").value=__birthday;
+    if(document.getElementById("_phone").value=="")document.getElementById("_phone").value=__phone;
+    if(document.getElementById("_addr1").value=="")document.getElementById("_addr1").value=__address;
+    if(document.getElementById("_text").value=="")document.getElementById("_text").value=__text;
+    if(document.getElementById("_postcode").value=="")document.getElementById("_postcode").value=__postcode;
     form.appendChild(document.getElementById("_nickname"));
     form.appendChild(document.getElementById("_name"));
     form.appendChild(document.getElementById("_country"));

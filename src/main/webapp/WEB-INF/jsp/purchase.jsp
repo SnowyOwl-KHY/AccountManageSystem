@@ -28,8 +28,8 @@
 <!-- navbar -->
 <div class="navbar navbar-inverse">
   <div class="navbar-inner">
-    <a class="brand" href="main.html"><img src="/static/img/logo.png" /></a>
-    <div class="navbar-text">Good afternoon, ${account_name}!</div>
+    <a class="brand" href="signin"><img src="/static/img/logo.png" /></a>
+    <div class="navbar-text">Hello, ${account_name}!</div>
   </div>
 </div>
 <!-- end navbar -->
