@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.stereotype.*;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Controller
@@ -26,7 +27,6 @@ public class LogupController {
         String account_name = req.getParameter("account_name");//得到用户名
         if(account_name == null)
         {
-            mv.addObject("judge",true);
             mv.setViewName("signup");
             return mv;
         }
@@ -36,16 +36,15 @@ public class LogupController {
         Boolean exist = DB.existUser(account_name);
         if(!exist) {
             DB.addUser(account_name,password,pay_password);
-            Double balance = Double.valueOf(0);
-            List<PurchaseRecord> record = DB.queryPurchaseRecordByAccountName(account_name);
+            double balance = 0;
+            List<PurchaseRecord> record = new ArrayList<PurchaseRecord>();
             mv.addObject("balance",balance);
             mv.addObject("record",record);
             mv.addObject("account_name",account_name);
             mv.setViewName("main");
         }else{
             mv.addObject("account_name",account_name);
-            mv.addObject("judge",false);
-            mv.setViewName("logup_error");
+            mv.setViewName("signup");
         }
         return mv;
     }
