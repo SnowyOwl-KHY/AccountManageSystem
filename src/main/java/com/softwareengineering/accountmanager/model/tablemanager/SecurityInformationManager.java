@@ -25,7 +25,6 @@ public class SecurityInformationManager {
             e.printStackTrace();
         }
         return false;
-
     }
 
     public boolean checkPassword(String accountName, String passwordCipher) {
