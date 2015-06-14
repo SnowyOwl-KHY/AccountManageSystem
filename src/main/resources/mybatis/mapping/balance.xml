@@ -17,6 +17,10 @@
         UPDATE balance SET balance = #balance# WHERE account_name = #accountName#
     </update>
 
+    <update id="rechargeBalance" parameterClass="Balance">
+        UPDATE balance SET balance = balance + #balance# WHERE account_name = #accountName#
+    </update>
+
     <delete id="deleteBalance">
         DELETE FROM balance WHERE account_name = #accountName#
     </delete>
