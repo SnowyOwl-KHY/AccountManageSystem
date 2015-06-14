@@ -19,7 +19,7 @@ public class BalanceController {
         String payword = req.getParameter("password");
         Double balance = Double.parseDouble(req.getParameter("money"));
         boolean judge = DB.checkPayPassword(account_name,payword);
-        if(judge){
+        if(judge && balance > 0){
             balance += DB.queryBalance(account_name);
             DB.updateBalance(account_name,balance);
             mv.addObject("account_name",account_name);
