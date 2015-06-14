@@ -8,7 +8,8 @@
 </head>
 
 <body>
-<div class="signin-wrapper">
+<div class="signin-wrapper" style="top:150px;">
+  <p style="color: red;height: 20px;" id="wrong">Wrong Account or Password!</p>
   <div class="box">
     <div style="width:82%;margin:0 auto;">
       <h6 align="center">SIGN IN</h6>
@@ -22,13 +23,19 @@
       <a class="btn" onclick="signin()">sign in</a>
     </div>
   </div>
-  <div class="no-account">
+  <div class="no-account" style="margin-top: 25px;">
     <p>No account?</p>
     <a href="signup">sign up</a>
   </div>
 </div>
 <!-- scripts -->
 <script type="text/javascript">
+  if(${judge}==true){
+    document.getElementById("wrong").innerText="";
+  }
+  else{
+    document.getElementById("wrong").innerText="Wrong Account or Password!";
+  }
   function signin(){
     var un = document.getElementById("un").value;
     var pw = document.getElementById("pw").value;
