@@ -94,7 +94,7 @@
           </div>
           <div class="span12 field-box">
             <label>Name:</label>
-            <input class="span9" type="text" id="_name" name="name" placeholder="${info.getRealName()}"/>
+            <input class="span9" type="text" id="_name" name="realname" placeholder="${info.getRealName()}"/>
           </div>
           <div class="span12 field-box">
             <label>Gender:</label>
@@ -196,6 +196,16 @@
   var __flag = "${flag}";
   console.log(__flag);
 
+  var __country="${info.getCountry()}";
+  var __nickname="${info.getNickname()}";
+  var __gender="${info.getGender()}";
+  var __realname="${info.getRealName()}";
+  var __birthday="${info.getBirthday()}";
+  var __phone="${info.getPhone()}";
+  var __address="${info.getAddress()}";
+  var __text="${info.getText()}";
+  var __postcode="${info.getPostcode()}";
+
   var radios=document.getElementsByName("optionsRadios");
   for (var i=0;i<radios.length;i++){ //遍历Radio
     if(radios[i].value=="${info.getGender()}")
@@ -253,6 +263,13 @@
     form.appendChild(newElement2);
     newElement2.value = j_gender;
 
+    if(document.getElementById("_nickname").value=="")document.getElementById("_nickname").value==__nickname;
+    if(document.getElementById("_name").value=="")document.getElementById("_name").value==__realname;
+    if(document.getElementById("_birthday").value=="")document.getElementById("_birthday").value==__birthday;
+    if(document.getElementById("_phone").value=="")document.getElementById("_phone").value==__phone;
+    if(document.getElementById("_addr1").value=="")document.getElementById("_addr1").value==__address;
+    if(document.getElementById("_text").value=="")document.getElementById("_text").value==__text;
+    if(document.getElementById("_postcode").value=="")document.getElementById("_postcode").value==__postcode;
     form.appendChild(document.getElementById("_nickname"));
     form.appendChild(document.getElementById("_name"));
     form.appendChild(document.getElementById("_country"));
