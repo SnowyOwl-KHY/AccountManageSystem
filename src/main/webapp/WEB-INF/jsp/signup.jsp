@@ -22,7 +22,7 @@
   </div>
   <div class="already-have">
     <p>Already have an account?</p>
-    <a href="signin.jsp">sign in</a>
+    <a href="signin">sign in</a>
   </div>
 </div>
 <!-- scripts -->
