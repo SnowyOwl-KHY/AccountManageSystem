@@ -16,11 +16,6 @@
       <br />
       <br />
       <a class="btn" onclick="check1()">By Email</a>
-      <br />
-      <br />
-      <a class="btn" onclick="check2()">By Questions</a>
-      <br />
-      <br />
       <a class="btn" onclick="back()">Back</a>
     </div>
   </div>
@@ -36,17 +31,8 @@
     }
     submit(email, chose);
   }
-  function check2(){
-    var email = document.getElementById("email").value;
-    var chose = "question";
-    if(email==""){
-      alert("Please enter email address!");
-      return false;
-    }
-    submit(email, question);
-  }
   function back(){
-    window.location.href="signin.html";
+    window.location.href="signin";
   }
   function submit(email, chose){
     var posturl = "";

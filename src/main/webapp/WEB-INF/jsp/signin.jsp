@@ -15,7 +15,7 @@
       <h6 align="center">SIGN IN</h6>
       <input type="text" id="un" placeholder="Username" />
       <input type="password" id="pw" placeholder="Password" />
-      <a class="forgot" href="forget_password.jsp">forget password?</a>
+      <a class="forgot" href="forget">forget password?</a>
       <div class="remember">
         <input id="remember-me" type="checkbox" />
         <label for="remember-me">Remember me</label>
