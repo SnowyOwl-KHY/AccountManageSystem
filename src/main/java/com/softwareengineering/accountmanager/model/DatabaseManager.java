@@ -150,7 +150,7 @@ public class DatabaseManager {
         String out = "";
         CommonInformation info = new CommonInformation("root");
         info.setNickname("test");
-        out += " " + new DatabaseManager().commonInformationManager.update(info);
+        out += " " + new DatabaseManager().existUser("user2");
         System.out.println(out);
 //        out += " " + new DatabaseManager().purchaseRecordManager.deleteByAccountName("root");
 //        System.out.println(out);
