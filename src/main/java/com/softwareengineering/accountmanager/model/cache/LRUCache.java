@@ -13,12 +13,25 @@ public class LRUCache {
 
     HashMap<String, CacheList.Node<Account>> cacheMap = new HashMap<String, CacheList.Node<Account>>();
 
-    private int capacity = 100;
+    private int capacity = 500;
 
-    public LRUCache() {
+    private static LRUCache instance = null;
+
+    public static LRUCache getLRUCache() {
+        if (instance == null) {
+            instance = new LRUCache();
+        }
+        return instance;
     }
 
-    public LRUCache(int capacity) {
+    private LRUCache() {
+    }
+
+    public int getCapacity() {
+        return capacity;
+    }
+
+    public void setCapacity(int capacity) {
         this.capacity = capacity;
     }
 
@@ -34,37 +47,23 @@ public class LRUCache {
 
     private Account deleteEldestItem() {
         String eldestAccountName = cacheList.removeLast().item.getAccountName();
-        return cacheMap.remove(eldestAccountName).item;
+        CacheList.Node<Account> node =  cacheMap.remove(eldestAccountName);
+        Account account = node.item;
+        return account;
     }
 
-    public void add(Account account) {
+    public Account add(Account account) {
         CacheList.Node<Account> node = cacheList.addFirst(account);
         cacheMap.put(account.getAccountName(), node);
         if (cacheMap.size() > capacity) {
-            deleteEldestItem();
+            return deleteEldestItem();
         }
+        return null;
     }
 
     public static void main(String[] args) {
 
     }
-
-    public static void testCacheList() {
-        CacheList<String> test = new CacheList<String>();
-        CacheList.Node node = test.addFirst("blabla1");
-        test.addLast("test2");
-        test.addFirst("addfirst2");
-        test.insertBefore(node, "insertBefore1");
-        test.insertAfter(node, "insertAfter1");
-        System.out.println(test);
-        test.remove(node);
-        System.out.println(test);
-        test.removeFirst();
-        System.out.println(test);
-        test.removeLast();
-        System.out.println(test);
-    }
-
 }
 
 

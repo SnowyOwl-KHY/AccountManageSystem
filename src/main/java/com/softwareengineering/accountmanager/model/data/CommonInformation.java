@@ -25,6 +25,12 @@ public class CommonInformation {
 
     private String gender = "";
 
+    private boolean isDirty = false;
+
+    public boolean isDirty() {
+        return isDirty;
+    }
+
     public CommonInformation() {
     }
 
@@ -59,6 +65,7 @@ public class CommonInformation {
 
     public void setNickname(String nickname) {
         this.nickname = nickname;
+        this.isDirty = true;
     }
 
     public String getRealName() {
@@ -67,6 +74,7 @@ public class CommonInformation {
 
     public void setRealName(String realName) {
         this.realName = realName;
+        this.isDirty = true;
     }
 
     public String getCountry() {
@@ -75,6 +83,7 @@ public class CommonInformation {
 
     public void setCountry(String country) {
         this.country = country;
+        this.isDirty = true;
     }
 
     public String getBirthday() {
@@ -83,6 +92,7 @@ public class CommonInformation {
 
     public void setBirthday(String birthday) {
         this.birthday = birthday;
+        this.isDirty = true;
     }
 
     public String getPhone() {
@@ -91,6 +101,7 @@ public class CommonInformation {
 
     public void setPhone(String phone) {
         this.phone = phone;
+        this.isDirty = true;
     }
 
     public String getAddress() {
@@ -99,6 +110,7 @@ public class CommonInformation {
 
     public void setAddress(String address) {
         this.address = address;
+        this.isDirty = true;
     }
 
     public String getText() {
@@ -107,6 +119,7 @@ public class CommonInformation {
 
     public void setText(String text) {
         this.text = text;
+        this.isDirty = true;
     }
 
     public String getPostcode() {
@@ -115,6 +128,7 @@ public class CommonInformation {
 
     public void setPostcode(String postcode) {
         this.postcode = postcode;
+        this.isDirty = true;
     }
 
     public String getGender() {
@@ -123,5 +137,6 @@ public class CommonInformation {
 
     public void setGender(String gender) {
         this.gender = gender;
+        this.isDirty = true;
     }
 }

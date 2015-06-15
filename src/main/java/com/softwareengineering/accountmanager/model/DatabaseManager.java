@@ -2,6 +2,7 @@ package com.softwareengineering.accountmanager.model;
 
 import com.ibatis.sqlmap.client.SqlMapClient;
 import com.ibatis.sqlmap.client.SqlMapClientBuilder;
+import com.softwareengineering.accountmanager.model.cache.LRUCache;
 import com.softwareengineering.accountmanager.model.data.*;
 import com.softwareengineering.accountmanager.model.tablemanager.*;
 import org.apache.ibatis.io.Resources;
@@ -28,6 +29,8 @@ public class DatabaseManager {
 
     private InactiveUserManager inactiveUserManager;
 
+    private LRUCache cache;
+
     public DatabaseManager() {
         super();
         try {
@@ -39,6 +42,7 @@ public class DatabaseManager {
             commonInformationManager = new CommonInformationManager(sqlMapClient);
             purchaseRecordManager = new PurchaseRecordManager(sqlMapClient);
             inactiveUserManager = new InactiveUserManager(sqlMapClient);
+            cache = LRUCache.getLRUCache();
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -94,12 +98,19 @@ public class DatabaseManager {
     }
 
     public boolean deleteUser(String accountName) {
-        boolean result = true;
-        result = result && securityInformationManager.deleteSecurityInformation(accountName);
-        result = result && balanceManager.deleteBalance(accountName);
-        result = result && commonInformationManager.delete(accountName);
-        result = result && purchaseRecordManager.deleteByAccountName(accountName);
-        return result;
+        if (securityInformationManager.deleteSecurityInformation(accountName) == false) {
+            return false;
+        }
+        if (balanceManager.deleteBalance(accountName) == false) {
+            return false;
+        }
+        if (commonInformationManager.delete(accountName) == false) {
+            return false;
+        }
+        if (purchaseRecordManager.deleteByAccountName(accountName) == false) {
+            return false;
+        }
+        return true;
     }
 
     public double queryBalance(String accountName) {

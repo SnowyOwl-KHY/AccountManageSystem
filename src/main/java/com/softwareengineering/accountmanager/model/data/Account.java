@@ -1,6 +1,6 @@
 package com.softwareengineering.accountmanager.model.data;
 
-import java.util.Set;
+import java.util.List;
 
 /**
  * Created by kehanyang on 15/5/31.
@@ -13,7 +13,8 @@ public class Account {
 
     private Balance balance = null;
 
-    private Set<PurchaseRecord> purchaseRecordSet = null;
+    // 暂时不用
+    private List<PurchaseRecord> purchaseRecordList = null;
 
     private Account() {
     }
@@ -22,11 +23,11 @@ public class Account {
         this.accountName = accountName;
     }
 
-    public Account(String accountName, CommonInformation commonInformation, Balance balance, Set<PurchaseRecord> purchaseRecordSet) {
+    public Account(String accountName, CommonInformation commonInformation, Balance balance, List<PurchaseRecord> purchaseRecordList) {
         this.accountName = accountName;
         this.commonInformation = commonInformation;
         this.balance = balance;
-        this.purchaseRecordSet = purchaseRecordSet;
+        this.purchaseRecordList = purchaseRecordList;
     }
 
     public String getAccountName() {
@@ -53,15 +54,15 @@ public class Account {
         this.balance = balance;
     }
 
-    public Set<PurchaseRecord> getPurchaseRecordSet() {
-        return purchaseRecordSet;
+    public List<PurchaseRecord> getPurchaseRecordList() {
+        return purchaseRecordList;
     }
 
-    public void setPurchaseRecordSet(Set<PurchaseRecord> purchaseRecordSet) {
-        this.purchaseRecordSet = purchaseRecordSet;
+    public void setPurchaseRecordList(List<PurchaseRecord> purchaseRecordList) {
+        this.purchaseRecordList = purchaseRecordList;
     }
 
     public void addNewPurchaseRecord(PurchaseRecord purchaseRecord) {
-        this.purchaseRecordSet.add(purchaseRecord);
+        this.purchaseRecordList.add(purchaseRecord);
     }
 }

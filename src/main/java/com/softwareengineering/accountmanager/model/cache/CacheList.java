@@ -35,6 +35,7 @@ public class CacheList<E> {
         return last;
     }
 
+    // 这里需要调用方来保证prev在此链表中，较危险，专门为LRUCache写的
     public Node<E> insertAfter(Node<E> prev, E item) {
         if (prev == null) {
             return null;
@@ -50,6 +51,7 @@ public class CacheList<E> {
         return prev.next;
     }
 
+    // 这里需要调用方来保证next在此链表中，较危险，专门为LRUCache写的
     public Node<E> insertBefore(Node<E> next, E item) {
         if (next == null) {
             return null;
