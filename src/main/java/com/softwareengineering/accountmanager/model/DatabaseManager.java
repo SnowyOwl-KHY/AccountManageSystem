@@ -96,6 +96,10 @@ public class DatabaseManager {
         return balanceManager.updateBalance(balance);
     }
 
+    public boolean recharge(String accountName, double money) {
+        return balanceManager.recharge(accountName, money);
+    }
+
     public CommonInformation queryCommonInformation(String accountName) {
         return commonInformationManager.query(accountName);
     }

@@ -45,6 +45,16 @@ public class BalanceManager {
         }
     }
 
+    public boolean recharge(String accountName, double money) {
+        try {
+            sqlMapClient.update("rechargeBalance", new Balance(accountName, money));
+            return true;
+        } catch (SQLException e) {
+            e.printStackTrace();
+            return false;
+        }
+    }
+
     public boolean deleteBalance(String accountName) {
         try {
             sqlMapClient.delete("deleteBalance", accountName);
