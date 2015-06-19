@@ -2,14 +2,9 @@ package com.softwareengineering.accountmanager.model;
 
 import com.ibatis.sqlmap.client.SqlMapClient;
 import com.ibatis.sqlmap.client.SqlMapClientBuilder;
-import com.softwareengineering.accountmanager.model.data.Balance;
-import com.softwareengineering.accountmanager.model.data.CommonInformation;
-import com.softwareengineering.accountmanager.model.data.PurchaseRecord;
-import com.softwareengineering.accountmanager.model.data.SecurityInformation;
-import com.softwareengineering.accountmanager.model.tablemanager.BalanceManager;
-import com.softwareengineering.accountmanager.model.tablemanager.CommonInformationManager;
-import com.softwareengineering.accountmanager.model.tablemanager.PurchaseRecordManager;
-import com.softwareengineering.accountmanager.model.tablemanager.SecurityInformationManager;
+import com.softwareengineering.accountmanager.model.cache.LRUCache;
+import com.softwareengineering.accountmanager.model.data.*;
+import com.softwareengineering.accountmanager.model.tablemanager.*;
 import org.apache.ibatis.io.Resources;
 
 import java.io.IOException;
@@ -32,6 +27,10 @@ public class DatabaseManager {
 
     private PurchaseRecordManager purchaseRecordManager;
 
+    private InactiveUserManager inactiveUserManager;
+
+    private LRUCache cache;
+
     public DatabaseManager() {
         super();
         try {
@@ -42,13 +41,19 @@ public class DatabaseManager {
             balanceManager = new BalanceManager(sqlMapClient);
             commonInformationManager = new CommonInformationManager(sqlMapClient);
             purchaseRecordManager = new PurchaseRecordManager(sqlMapClient);
+            inactiveUserManager = new InactiveUserManager(sqlMapClient);
+            cache = LRUCache.getLRUCache();
         } catch (IOException e) {
             e.printStackTrace();
         }
     }
 
     public boolean existUser(String accountName) {
-        return securityInformationManager.existUser(accountName);
+        return securityInformationManager.existUser(accountName) || inactiveUserManager.exitUser(accountName);
+    }
+
+    public boolean checkRegisterId(String accountName, String registerId) {
+        return inactiveUserManager.checkRegisterId(accountName, registerId) != null;
     }
 
     public boolean checkPassword(String accountName, String password) {
@@ -59,12 +64,29 @@ public class DatabaseManager {
         return securityInformationManager.checkPayPassword(accountName, payPassword);
     }
 
-    public boolean addUser(String accountName, String password, String payPassword) {
-        boolean result = true;
-        result = result && securityInformationManager.addSecurityInformation(accountName, password, payPassword);
-        result = result && balanceManager.addBalance(accountName);
-        result = result && commonInformationManager.add(accountName);
-        return result;
+    public boolean addUser(String accountName, String password, String registerId) {
+        return inactiveUserManager.addUser(accountName, password, registerId);
+    }
+
+    public boolean activateUser(String accountName, String registerId) {
+        InactiveUser inactiveUser = inactiveUserManager.checkRegisterId(accountName, registerId);
+        if (inactiveUser == null) {
+            return false;
+        }
+        if (inactiveUserManager.removeUser(accountName) == false) {
+            return false;
+        }
+        String password = inactiveUser.getPassword();
+        if (securityInformationManager.addSecurityInformation(accountName, password, password) == false) {
+            return false;
+        }
+        if (balanceManager.addBalance(accountName) == false) {
+            return false;
+        }
+        if (commonInformationManager.add(accountName) == false) {
+            return false;
+        }
+        return true;
     }
 
     public boolean changePassword(String accountName, String password) {
@@ -76,12 +98,19 @@ public class DatabaseManager {
     }
 
     public boolean deleteUser(String accountName) {
-        boolean result = true;
-        result = result && securityInformationManager.deleteSecurityInformation(accountName);
-        result = result && balanceManager.deleteBalance(accountName);
-        result = result && commonInformationManager.delete(accountName);
-        result = result && purchaseRecordManager.deleteByAccountName(accountName);
-        return result;
+        if (securityInformationManager.deleteSecurityInformation(accountName) == false) {
+            return false;
+        }
+        if (balanceManager.deleteBalance(accountName) == false) {
+            return false;
+        }
+        if (commonInformationManager.delete(accountName) == false) {
+            return false;
+        }
+        if (purchaseRecordManager.deleteByAccountName(accountName) == false) {
+            return false;
+        }
+        return true;
     }
 
     public double queryBalance(String accountName) {
@@ -132,7 +161,7 @@ public class DatabaseManager {
         String out = "";
         CommonInformation info = new CommonInformation("root");
         info.setNickname("test");
-        out += " " + new DatabaseManager().commonInformationManager.update(info);
+        out += " " + new DatabaseManager().existUser("user2");
         System.out.println(out);
 //        out += " " + new DatabaseManager().purchaseRecordManager.deleteByAccountName("root");
 //        System.out.println(out);

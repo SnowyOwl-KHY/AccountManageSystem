@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE sqlMap PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN" "http://ibatis.apache.org/dtd/sql-map-2.dtd" >
+<sqlMap>
+    <typeAlias alias="InactiveUser"
+               type="com.softwareengineering.accountmanager.model.data.InactiveUser"/>
+
+    <resultMap id="inactiveUser.rm" class="InactiveUser">
+        <result column="account_name" property="accountName"/>
+        <result column="password" property="password"/>
+        <result column="register_id" property="registerId"/>
+    </resultMap>
+
+    <select id="selectInactiveUserByAccountName" resultMap="inactiveUser.rm">
+        SELECT * FROM inactive_user WHERE account_name = #accountName#
+    </select>
+
+    <select id="selectInactiveUserByAccountNameAndRegisterId" parameterClass="InactiveUser" resultMap="inactiveUser.rm">
+        SELECT * FROM inactive_user WHERE account_name = #accountName# AND register_id = #registerId#
+    </select>
+
+    <insert id="insertInactiveUser" parameterClass="InactiveUser">
+        INSERT INTO inactive_user VALUES (#accountName#, #password#, #registerId#)
+    </insert>
+
+    <delete id="deleteInactiveUser">
+        DELETE FROM inactive_user WHERE account_name = #accountName#
+    </delete>
+
+</sqlMap>

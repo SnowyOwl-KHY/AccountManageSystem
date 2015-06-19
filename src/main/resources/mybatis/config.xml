@@ -19,4 +19,5 @@
     <sqlMap resource="mybatis/mapping/balance.xml"/>
     <sqlMap resource="mybatis/mapping/common_information.xml"/>
     <sqlMap resource="mybatis/mapping/purchase_record.xml"/>
+    <sqlMap resource="mybatis/mapping/inactive_user.xml"/>
 </sqlMapConfig>

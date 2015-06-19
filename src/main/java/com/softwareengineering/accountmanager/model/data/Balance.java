@@ -9,6 +9,12 @@ public class Balance {
 
     private double balance;
 
+    private boolean isDirty = false;
+
+    public boolean isDirty() {
+        return isDirty;
+    }
+
     public Balance() {
 
     }
@@ -32,5 +38,6 @@ public class Balance {
 
     public void setBalance(double balance) {
         this.balance = balance;
+        this.isDirty = true;
     }
 }

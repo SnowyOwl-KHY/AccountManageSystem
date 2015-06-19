@@ -17,6 +17,12 @@ public class PurchaseRecord implements Comparable {
 
     private double money;
 
+    private boolean isDirty = false;
+
+    public boolean isDirty() {
+        return isDirty;
+    }
+
     public PurchaseRecord() {
     }
 
@@ -57,6 +63,7 @@ public class PurchaseRecord implements Comparable {
 
     public void setPurchaseDate(Date purchaseDate) {
         this.purchaseDate = purchaseDate;
+        this.isDirty = true;
     }
 
     public long getMerchandiseId() {
@@ -65,6 +72,7 @@ public class PurchaseRecord implements Comparable {
 
     public void setMerchandiseId(long merchandiseId) {
         this.merchandiseId = merchandiseId;
+        this.isDirty = true;
     }
 
     public double getMoney() {
@@ -73,6 +81,7 @@ public class PurchaseRecord implements Comparable {
 
     public void setMoney(double money) {
         this.money = money;
+        this.isDirty = true;
     }
 
     public int compareTo(Object o) {
