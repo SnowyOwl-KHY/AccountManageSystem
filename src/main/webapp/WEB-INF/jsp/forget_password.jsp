@@ -35,7 +35,7 @@
     window.location.href="signin";
   }
   function submit(email, chose){
-    var posturl = "";
+    var posturl = "forget_mail";
     var email = email;
     var chose = chose;
     var form = document.createElement("FORM");
