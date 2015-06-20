@@ -31,6 +31,8 @@ public class DatabaseManager {
 
     private LRUCache cache;
 
+    private static boolean initialFlag = false;
+
     public DatabaseManager() {
         super();
         try {
@@ -43,7 +45,16 @@ public class DatabaseManager {
             purchaseRecordManager = new PurchaseRecordManager(sqlMapClient);
             inactiveUserManager = new InactiveUserManager(sqlMapClient);
             cache = LRUCache.getLRUCache();
+            if (initialFlag == false) {
+                sqlMapClient.update("createSecurityInformation");
+                sqlMapClient.update("createBalance");
+                sqlMapClient.update("createCommonInformation");
+                sqlMapClient.update("createPurchaseRecord");
+                sqlMapClient.update("createInactiveUser");
+            }
         } catch (IOException e) {
+            e.printStackTrace();
+        } catch (SQLException e) {
             e.printStackTrace();
         }
     }
@@ -65,6 +76,9 @@ public class DatabaseManager {
     }
 
     public boolean addUser(String accountName, String password, String registerId) {
+        if (existUser(accountName)) {
+            return false;
+        }
         return inactiveUserManager.addUser(accountName, password, registerId);
     }
 
@@ -159,9 +173,8 @@ public class DatabaseManager {
 
     public static void main(String[] args) {
         String out = "";
-        CommonInformation info = new CommonInformation("root");
-        info.setNickname("test");
-        out += " " + new DatabaseManager().existUser("user2");
+        out += new DatabaseManager().addUser("user1", "123", "1.0");
+        out += new DatabaseManager().activateUser("user1", "1.0");
         System.out.println(out);
 //        out += " " + new DatabaseManager().purchaseRecordManager.deleteByAccountName("root");
 //        System.out.println(out);
