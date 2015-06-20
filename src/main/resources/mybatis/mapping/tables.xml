@@ -43,4 +43,10 @@
         register_id VARCHAR(32) NOT NULL)
     </statement>
 
+    <statement id="createResetPassword">
+        CREATE TABLE IF NOT EXISTS reset_password
+        (account_name VARCHAR(16) PRIMARY KEY,
+        register_id VARCHAR(32) NOT NULL)
+    </statement>
+
 </sqlMap>

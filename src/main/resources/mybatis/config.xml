@@ -20,5 +20,6 @@
     <sqlMap resource="mybatis/mapping/common_information.xml"/>
     <sqlMap resource="mybatis/mapping/purchase_record.xml"/>
     <sqlMap resource="mybatis/mapping/inactive_user.xml"/>
+    <sqlMap resource="mybatis/mapping/reset_password.xml"/>
     <sqlMap resource="mybatis/mapping/tables.xml"/>
 </sqlMapConfig>
