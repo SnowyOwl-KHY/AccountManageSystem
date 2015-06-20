@@ -10,10 +10,6 @@
         <result column="register_id" property="registerId"/>
     </resultMap>
 
-    <select id="selectInactiveUserByAccountName" resultMap="inactiveUser.rm">
-        SELECT * FROM inactive_user WHERE account_name = #accountName#
-    </select>
-
     <select id="selectInactiveUserByAccountNameAndRegisterId" parameterClass="InactiveUser" resultMap="inactiveUser.rm">
         SELECT * FROM inactive_user WHERE account_name = #accountName# AND register_id = #registerId#
     </select>

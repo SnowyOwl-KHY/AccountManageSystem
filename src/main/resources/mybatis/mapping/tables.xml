@@ -4,18 +4,18 @@
 
     <statement id="createSecurityInformation">
         CREATE TABLE IF NOT EXISTS security_information
-        (account_name CHAR(16) PRIMARY KEY, password CHAR(16) NOT NULL, pay_password CHAR(16) NOT NULL)
+        (account_name VARCHAR(32) PRIMARY KEY, password CHAR(16) NOT NULL, pay_password CHAR(16) NOT NULL)
     </statement>
 
     <statement id="createBalance">
         CREATE TABLE IF NOT EXISTS balance
-        (account_name CHAR(16) PRIMARY KEY,
+        (account_name VARCHAR(32) PRIMARY KEY,
          balance DOUBLE NOT NULL)
     </statement>
 
     <statement id="createCommonInformation">
         CREATE TABLE IF NOT EXISTS common_information
-        (account_name CHAR(16) PRIMARY KEY,
+        (account_name VARCHAR(32) PRIMARY KEY,
         nickname VARCHAR(50),
         real_name VARCHAR(50),
         country VARCHAR(16),
@@ -30,7 +30,7 @@
     <statement id="createPurchaseRecord">
         CREATE TABLE IF NOT EXISTS purchase_record
         (id BIGINT PRIMARY KEY AUTO_INCREMENT,
-        account_name CHAR(16) NOT NULL,
+        account_name VARCHAR(32) NOT NULL,
         purchase_date DATE NOT NULL,
         merchandise_id BIGINT NOT NULL,
         money DOUBLE NOT NULL)
@@ -38,14 +38,14 @@
 
     <statement id="createInactiveUser">
         CREATE TABLE IF NOT EXISTS inactive_user
-        (account_name VARCHAR(16) PRIMARY KEY,
+        (account_name VARCHAR(32) NOT NULL,
         password VARCHAR(16) NOT NULL,
         register_id VARCHAR(32) NOT NULL)
     </statement>
 
     <statement id="createResetPassword">
         CREATE TABLE IF NOT EXISTS reset_password
-        (account_name VARCHAR(16) PRIMARY KEY,
+        (account_name VARCHAR(32) NOT NULL,
         register_id VARCHAR(32) NOT NULL)
     </statement>
 
