@@ -29,7 +29,11 @@ public class DatabaseManager {
 
     private InactiveUserManager inactiveUserManager;
 
+    private ResetPasswordManager resetPasswordManager;
+
     private LRUCache cache;
+
+    private static boolean initialFlag = false;
 
     public DatabaseManager() {
         super();
@@ -42,8 +46,19 @@ public class DatabaseManager {
             commonInformationManager = new CommonInformationManager(sqlMapClient);
             purchaseRecordManager = new PurchaseRecordManager(sqlMapClient);
             inactiveUserManager = new InactiveUserManager(sqlMapClient);
+            resetPasswordManager = new ResetPasswordManager(sqlMapClient);
             cache = LRUCache.getLRUCache();
+            if (initialFlag == false) {
+                sqlMapClient.update("createSecurityInformation");
+                sqlMapClient.update("createBalance");
+                sqlMapClient.update("createCommonInformation");
+                sqlMapClient.update("createPurchaseRecord");
+                sqlMapClient.update("createInactiveUser");
+                sqlMapClient.update("createResetPassword");
+            }
         } catch (IOException e) {
+            e.printStackTrace();
+        } catch (SQLException e) {
             e.printStackTrace();
         }
     }
@@ -65,6 +80,9 @@ public class DatabaseManager {
     }
 
     public boolean addUser(String accountName, String password, String registerId) {
+        if (existUser(accountName)) {
+            return false;
+        }
         return inactiveUserManager.addUser(accountName, password, registerId);
     }
 
@@ -157,11 +175,34 @@ public class DatabaseManager {
         return purchaseRecordManager.deleteById(id);
     }
 
+    public boolean prepareResetPassword(String accountName, String registerId) {
+        if (!existUser(accountName)) {
+            return false;
+        }
+        return resetPasswordManager.add(accountName, registerId);
+    }
+
+    public boolean resetPassword(String accountName, String registerId, String newPassword) {
+        if (resetPasswordManager.checkRegisterId(accountName, registerId) == false) {
+            return false;
+        } else {
+            if (resetPasswordManager.remove(accountName) == false) {
+                return false;
+            }
+            if (securityInformationManager.changePassword(accountName, newPassword) == false) {
+                return false;
+            }
+            if (securityInformationManager.changePayPassword(accountName, newPassword) == false) {
+                return false;
+            }
+            return true;
+        }
+    }
+
     public static void main(String[] args) {
         String out = "";
-        CommonInformation info = new CommonInformation("root");
-        info.setNickname("test");
-        out += " " + new DatabaseManager().existUser("user2");
+        out += new DatabaseManager().prepareResetPassword("user1", "1.0");
+        out += new DatabaseManager().resetPassword("user1", "1.0", "1234");
         System.out.println(out);
 //        out += " " + new DatabaseManager().purchaseRecordManager.deleteByAccountName("root");
 //        System.out.println(out);
