@@ -29,7 +29,7 @@ public class ForgetMailController {
         if(judge){
             mv.addObject(password,"password");
             mv.addObject(account_name,"account_name");
-            mv.setViewName("forget_password_input");
+            mv.setViewName("forget_password_");
         } else{
             mv.addObject("account_name",account_name);
             mv.setViewName("mail_error");
