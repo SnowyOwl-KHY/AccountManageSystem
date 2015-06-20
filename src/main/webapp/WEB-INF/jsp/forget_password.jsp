@@ -42,7 +42,7 @@
     document.body.appendChild(form);
     form.method = "POST";
     var newElement = document.createElement("input");
-    newElement.setAttribute("name", "email");
+    newElement.setAttribute("name", "account_name");
     newElement.setAttribute("type", "hidden");
     var newElement2 = document.createElement("input");
     newElement2.setAttribute("name", "chose");
