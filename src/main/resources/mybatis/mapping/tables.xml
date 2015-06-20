@@ -38,14 +38,14 @@
 
     <statement id="createInactiveUser">
         CREATE TABLE IF NOT EXISTS inactive_user
-        (account_name VARCHAR(32) PRIMARY KEY,
+        (account_name VARCHAR(32) NOT NULL,
         password VARCHAR(16) NOT NULL,
         register_id VARCHAR(32) NOT NULL)
     </statement>
 
     <statement id="createResetPassword">
         CREATE TABLE IF NOT EXISTS reset_password
-        (account_name VARCHAR(32) PRIMARY KEY,
+        (account_name VARCHAR(32) NOT NULL,
         register_id VARCHAR(32) NOT NULL)
     </statement>
 
