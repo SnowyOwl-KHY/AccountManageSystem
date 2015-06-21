@@ -202,15 +202,15 @@ public class DatabaseManager {
         }
     }
 
-    public static void main(String[] args) {
-        String out = "";
-        DatabaseManager databaseManager = new DatabaseManager();
-        out += databaseManager.prepareResetPassword("user1", "1");
-        out += databaseManager.resetPassword("user1", "1", "1234");
-        System.out.println(out);
+//    public static void main(String[] args) {
+//        String out = "";
+//        DatabaseManager databaseManager = new DatabaseManager();
+//        out += databaseManager.prepareResetPassword("user1", "1");
+//        out += databaseManager.resetPassword("user1", "1", "1234");
+//        System.out.println(out);
 //        out += " " + new DatabaseManager().purchaseRecordManager.deleteByAccountName("root");
 //        System.out.println(out);
 //        List<PurchaseRecord> purchaseRecords = new DatabaseManager().purchaseRecordManager.queryByAccountName("root");
 //        System.out.println(purchaseRecords);
-    }
+//    }
 }
