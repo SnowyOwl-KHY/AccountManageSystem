@@ -45,6 +45,7 @@ public class LogupController {
 
         DB =new DatabaseManager();//数据库对象
         Boolean exist = DB.existUser(account_name);
+
         if(!exist) {
             DB.addUser(account_name, password, registerId);
             String from = "3120100759@zju.edu.cn";
@@ -86,7 +87,7 @@ public class LogupController {
             }catch (MessagingException mex) {
                 mex.printStackTrace();
             }
-            mv.setViewName("checkemail");
+            mv.setViewName("check_email");
         }else{
             mv.addObject("account_name",account_name);
             mv.addObject("judge",false);

@@ -67,6 +67,7 @@ public class DatabaseManager {
         return securityInformationManager.existUser(accountName) || inactiveUserManager.exitUser(accountName);
     }
 
+
     public boolean checkRegisterId(String accountName, String registerId) {
         return inactiveUserManager.checkRegisterId(accountName, registerId) != null;
     }
