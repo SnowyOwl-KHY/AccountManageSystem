@@ -35,14 +35,14 @@
     window.location.href="signin";
   }
   function submit(email, chose){
-    var posturl = "";
+    var posturl = "forget_mail";
     var email = email;
     var chose = chose;
     var form = document.createElement("FORM");
     document.body.appendChild(form);
     form.method = "POST";
     var newElement = document.createElement("input");
-    newElement.setAttribute("name", "email");
+    newElement.setAttribute("name", "account_name");
     newElement.setAttribute("type", "hidden");
     var newElement2 = document.createElement("input");
     newElement2.setAttribute("name", "chose");

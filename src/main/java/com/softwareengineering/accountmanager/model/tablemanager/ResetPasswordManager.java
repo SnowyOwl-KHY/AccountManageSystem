@@ -5,6 +5,7 @@ import com.softwareengineering.accountmanager.model.data.Balance;
 import com.softwareengineering.accountmanager.model.data.ResetPassword;
 
 import java.sql.SQLException;
+import java.util.List;
 
 /**
  * Created by kehanyang on 15/6/20.
@@ -43,8 +44,8 @@ public class ResetPasswordManager {
 
     public boolean checkRegisterId(String accountName, String registerId) {
         try {
-            Object result =  sqlMapClient.queryForObject("selectResetPassword", new ResetPassword(accountName, registerId));
-            return result != null;
+            List result =  sqlMapClient.queryForList("selectResetPassword", new ResetPassword(accountName, registerId));
+            return result != null && result.size() > 0;
         } catch (SQLException e) {
             e.printStackTrace();
             return false;

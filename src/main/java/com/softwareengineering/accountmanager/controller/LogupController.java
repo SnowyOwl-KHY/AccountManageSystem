@@ -87,7 +87,7 @@ public class LogupController {
             }catch (MessagingException mex) {
                 mex.printStackTrace();
             }
-            mv.setViewName("check_email");
+            mv.setViewName("check_mail");
         }else{
             mv.addObject("account_name",account_name);
             mv.addObject("judge",false);

@@ -27,8 +27,8 @@ public class ForgetMailController {
         String password = String.valueOf(random.nextInt(899999)+100000);
         boolean judge = DB.resetPassword(account_name, registerId,password);
         if(judge){
-            mv.addObject(password,"password");
-            mv.addObject(account_name,"account_name");
+            mv.addObject("password",password);
+            mv.addObject("account_name",account_name);
             mv.setViewName("forget_password_");
         } else{
             mv.addObject("account_name",account_name);

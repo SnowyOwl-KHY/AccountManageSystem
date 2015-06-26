@@ -3,13 +3,16 @@ package com.softwareengineering.accountmanager.model;
 import com.ibatis.sqlmap.client.SqlMapClient;
 import com.ibatis.sqlmap.client.SqlMapClientBuilder;
 import com.softwareengineering.accountmanager.model.cache.LRUCache;
-import com.softwareengineering.accountmanager.model.data.*;
+import com.softwareengineering.accountmanager.model.data.Balance;
+import com.softwareengineering.accountmanager.model.data.CommonInformation;
+import com.softwareengineering.accountmanager.model.data.InactiveUser;
+import com.softwareengineering.accountmanager.model.data.PurchaseRecord;
 import com.softwareengineering.accountmanager.model.tablemanager.*;
 import org.apache.ibatis.io.Resources;
 
 import java.io.IOException;
 import java.io.Reader;
-import java.sql.*;
+import java.sql.SQLException;
 import java.util.List;
 
 /**
@@ -64,7 +67,7 @@ public class DatabaseManager {
     }
 
     public boolean existUser(String accountName) {
-        return securityInformationManager.existUser(accountName) || inactiveUserManager.exitUser(accountName);
+        return securityInformationManager.existUser(accountName);
     }
 
 
@@ -88,14 +91,14 @@ public class DatabaseManager {
     }
 
     public boolean activateUser(String accountName, String registerId) {
-        InactiveUser inactiveUser = inactiveUserManager.checkRegisterId(accountName, registerId);
-        if (inactiveUser == null) {
+        List<InactiveUser> inactiveUsers = inactiveUserManager.checkRegisterId(accountName, registerId);
+        if (inactiveUsers == null || inactiveUsers.size() == 0) {
             return false;
         }
         if (inactiveUserManager.removeUser(accountName) == false) {
             return false;
         }
-        String password = inactiveUser.getPassword();
+        String password = inactiveUsers.get(0).getPassword();
         if (securityInformationManager.addSecurityInformation(accountName, password, password) == false) {
             return false;
         }
@@ -200,14 +203,15 @@ public class DatabaseManager {
         }
     }
 
-    public static void main(String[] args) {
-        String out = "";
-        out += new DatabaseManager().prepareResetPassword("user1", "1.0");
-        out += new DatabaseManager().resetPassword("user1", "1.0", "1234");
-        System.out.println(out);
+//    public static void main(String[] args) {
+//        String out = "";
+//        DatabaseManager databaseManager = new DatabaseManager();
+//        out += databaseManager.prepareResetPassword("user1", "1");
+//        out += databaseManager.resetPassword("user1", "1", "1234");
+//        System.out.println(out);
 //        out += " " + new DatabaseManager().purchaseRecordManager.deleteByAccountName("root");
 //        System.out.println(out);
 //        List<PurchaseRecord> purchaseRecords = new DatabaseManager().purchaseRecordManager.queryByAccountName("root");
 //        System.out.println(purchaseRecords);
-    }
+//    }
 }
