@@ -13,7 +13,7 @@
     <div style="width:82%;margin:0 auto;">
       <h6 align="center">Error!</h6>
       <h6 align="center">Wrong account name!</h6>
-      <a class="btn" href="forget_password">Back</a>
+      <a class="btn" href="forget_password.jsp">Back</a>
     </div>
   </div>
 </div>

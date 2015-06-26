@@ -81,7 +81,7 @@
         <button class="glow left" id="btn1" onclick="btnclick(1)">Change Password</button>
         <button class="glow right active" id= "btn2" onclick="btnclick(2)">Change Pay password</button>
       </div>
-      <label id="lable1">Old Pay Passworld:</label>
+      <label id="lable1">Old Pay Password:</label>
       <input id="pw0" type="password" />
       <label id="lable2">New Pay Password:</label>
       <input id="pw1" type="password" />
@@ -163,17 +163,17 @@
       document.getElementById('btn1').className="glow left active";
       document.getElementById('btn2').className="glow right";
       posturl = "reset_password_";
-      document.getElementById('lable1').innerHTML="Old Passworld:";
-      document.getElementById('lable2').innerHTML="New Passworld:";
-      document.getElementById('lable3').innerHTML="Confirm New Passworld:";
+      document.getElementById('lable1').innerHTML="Old Password:";
+      document.getElementById('lable2').innerHTML="New Password:";
+      document.getElementById('lable3').innerHTML="Confirm New Password:";
     }
     else if(i==2){
       document.getElementById('btn1').className="glow left";
       document.getElementById('btn2').className="glow right active";
       posturl = "pay_password_change_";
-      document.getElementById('lable1').innerHTML="Old Pay Passworld:";
-      document.getElementById('lable2').innerHTML="New Pay Passworld:";
-      document.getElementById('lable3').innerHTML="Confirm New Pay Passworld:";
+      document.getElementById('lable1').innerHTML="Old Pay Password:";
+      document.getElementById('lable2').innerHTML="New Pay Password:";
+      document.getElementById('lable3').innerHTML="Confirm New Pay Password:";
     }
 
   }
