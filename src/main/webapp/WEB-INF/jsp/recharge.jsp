@@ -193,9 +193,17 @@
       function SUBM(str){
 
         var money=document.getElementById("_money").value;
-
+        var passw=document.getElementById("_password").value;
         if(isNaN(money)){
           alert("put right money!");
+          return;
+        }
+        if(passw==''){
+          alert("please put in password!");
+          return;
+        }
+        if(money==''){
+          alert("please put in money!");
           return;
         }
 
